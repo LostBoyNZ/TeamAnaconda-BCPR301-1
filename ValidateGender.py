@@ -6,15 +6,18 @@ class ValidateAge(object):
         self.gender = gender
 
     def is_valid(self):
-        gender_list = ['M', 'F' 'Boy', 'Girl', 'Male', 'Female', 'Dude', 'Lady']
+        gender_list = ['M', 'F', 'Boy', 'Girl', 'Male', 'Female', 'Dude', 'Lady']
         g = self.gender
         g = self.wash_data(g)
+        g = self.is_in_list(g, gender_list)
+        return g
 
-        if any(g in s for s in gender_list):
+    @staticmethod
+    def is_in_list(g, listed):
+        if any(g in s for s in listed):
             result = True
         else:
             result = False
-        print(g)
         return result
 
     @staticmethod
@@ -24,9 +27,6 @@ class ValidateAge(object):
         to_wash = to_wash.title()
 
         return to_wash
-
-
-
 
 
 i = ValidateAge(' 4254 54  M ale  $#$@13%$5 14-')
