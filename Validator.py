@@ -2,22 +2,13 @@ import re
 
 class Validator(object):
     # Graham
-    def is_longer_than(self, data, max_length):
-        is_correct = False
+    def is_within_length(self, min_length, max_length):
+        correct = False
 
-        if len(data) > max_length:
-            is_correct = True
+        if len(self.data) >= min_length and len(self.data) <= max_length:
+            correct = True
 
-        return is_correct
-
-    # Graham
-    def is_shorter_than(self, data, min_length):
-        is_correct = False
-
-        if len(data) < min_length:
-            is_correct = True
-
-        return is_correct
+        return correct
 
     # Graham
     def is_correct_pattern(self, data, target_pattern):

@@ -13,3 +13,10 @@ class Washer(object):
         washed_data = data.title()
 
         return washed_data
+
+    # Graham
+    def replace_x_with_y(self, x, y):
+        target = x
+        replacement = y
+
+        self.data = re.sub(target, replacement, self.data)
