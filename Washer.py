@@ -27,8 +27,10 @@ class Washer(object):
     # For example calling:
     #   replace_x_with_y("-", "/")
     # Would change 10-01-1998 to 10/01/1998
-    def replace_x_with_y(self, x, y):
+    def replace_x_with_y(self, x, y, data):
         target = x
         replacement = y
 
-        self.data = re.sub(target, replacement, self.data)
+        new_data = re.sub(target, replacement, data)
+
+        return new_data
