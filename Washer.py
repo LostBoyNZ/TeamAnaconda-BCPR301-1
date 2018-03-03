@@ -9,19 +9,19 @@ class Washer(object):
     #
     # Because it only keeps letters a-z
     # a-zA-Z0-9 would keep all letters and numbers
-    def keep_only_these_in_string(self, data, regex_to_keep):
+    def keep_only_these_in_string(self, regex_to_keep, data):
         regex_target = re.compile(r"[^" + regex_to_keep + "]")
 
-        data = regex_target.sub("", data)
-        return data
+        new_data = regex_target.sub("", data)
+        return new_data
 
     # Graham
     # Output will have one capital letter then all lowercase
     # e.g. tEsT would become Test
     def set_case(self, data):
-        washed_data = data.title()
+        new_data = data.title()
 
-        return washed_data
+        return new_data
 
     # Graham
     # For example calling:
