@@ -2,16 +2,16 @@ import re
 
 class Validator(object):
     # Graham
-    def is_within_length(self, min_length, max_length):
+    def is_within_length(self, min_length, max_length, data):
         correct = False
 
-        if len(self.data) >= min_length and len(self.data) <= max_length:
+        if len(data) >= min_length and len(data) <= max_length:
             correct = True
 
         return correct
 
     # Graham
-    def is_correct_pattern(self, data, target_pattern):
+    def is_correct_pattern(self, target_pattern, data):
         is_correct = False
 
         if re.match(target_pattern, data):
@@ -20,13 +20,13 @@ class Validator(object):
         return is_correct
 
     # Graham
-    def has_this_many_numbers(self, data, count):
+    def has_this_many_numbers(self, count, data):
         number_count = sum(a_number.isdigit() for a_number in data)
 
         return number_count == count
 
     # Graham
-    def has_this_many_letters(self, data, count):
+    def has_this_many_letters(self, count, data):
         letter_count = sum(a_character.isalpha() for a_character in data)
 
         return letter_count == count
