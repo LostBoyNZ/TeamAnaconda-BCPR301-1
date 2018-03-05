@@ -1,6 +1,7 @@
 import validator
 import washer
 
+
 class ValidateEmpid(object):
 
     @staticmethod
@@ -33,7 +34,3 @@ class ValidateEmpid(object):
             correct_characters = True
 
         return correct_length and correct_number_of_characters and correct_characters and correct_format
-
-i = ValidateEmpid()
-result = i.is_valid("a#2@$&*(@&$01")
-print(result)

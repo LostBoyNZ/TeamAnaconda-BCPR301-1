@@ -1,4 +1,4 @@
-import validator
+import validate_empid
 
 # class Cmd():
 #
@@ -6,9 +6,12 @@ import validator
 #         userCommand = input("> ")
 #
 #         try:
-#             className = Hi
-#             newObject = className()
-#             #userCommand()
+#             #className = Hi
+#             i = userCommand
+#             output = i.has_this_many_numbers(i, 3, "302")
+#             print(output)
+#             #newObject = className
+#             #className = userCommand
 #         except NameError:
 #             print("Command not found")
 #
@@ -21,5 +24,7 @@ import validator
 # i = Cmd()
 # i.command()
 
-output = validator.Validator.has_this_many_numbers(3, "302")
+# This checks if an ID is valid
+i = validate_empid.ValidateEmpid
+output = i.is_valid(i, "a#2@$&*(@&$01")
 print(output)
