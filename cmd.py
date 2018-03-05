@@ -1,5 +1,7 @@
 import validate_empid
 
+# getattr
+
 # class Cmd():
 #
 #     def command(self):
