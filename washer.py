@@ -1,5 +1,6 @@
 import re
 
+
 class Washer(object):
     # Graham
     # For example calling:
@@ -34,3 +35,10 @@ class Washer(object):
         new_data = re.sub(target, replacement, data)
 
         return new_data
+
+    @staticmethod  # Claye
+    def wash_all_but_string_characters(to_wash):
+        to_wash = ''.join([c for c in to_wash if c not in " 1234567890"])
+        to_wash = re.sub(r'[^\w]', '', to_wash)
+
+        return to_wash
