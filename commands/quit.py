@@ -1,6 +1,17 @@
+# Graham
+
 import sys
 
-from commands.command import Command
+try:
+    from errors import ErrorHandler as err
+except NameError and ModuleNotFoundError and ImportError:
+    print("Fatal Error - errors.py not found.")
+    sys.exit()
+
+try:
+    from commands.command import Command
+except NameError and ModuleNotFoundError and ImportError:
+    print("Fatal Error - command.py in commands folder not found.")
 
 
 class Quit(Command):
@@ -15,22 +26,22 @@ class Quit(Command):
     # translates switches into the method names, e.g. /q switch would run quit
     def get_switch(self, switch):
         return {
-            'q': self.quit,
-            'b': self.bye,
-            'm': self.message
+            'q': self._quit,
+            'b': self._bye,
+            'm': self._message
         }.get(switch, '')
 
     # put the default action for this class (no switches used) here
-    def default(self):
+    def _default(self):
         if self.my_command_line.confirm("quit"):
             self.quit()
 
     # put the methods for each switch here
-    def quit(self):
+    def _quit(self):
         sys.exit()
 
-    def bye(self):
+    def _bye(self):
         print("Bye bye!")
 
-    def message(self):
+    def _message(self):
         print(self.user_string)

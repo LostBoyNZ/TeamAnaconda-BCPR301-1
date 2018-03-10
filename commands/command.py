@@ -14,13 +14,13 @@ class Command:
 
         # extract and run switch methods and extract user data, e.g. file name, from the command
         if switches_and_data:
-            methods_to_run, self.user_string = self.my_command_line.split_input(switches_and_data, self)
+            methods_to_run, self.user_string = self.my_command_line.get_switch_and_data(switches_and_data, self)
             if methods_to_run:
-                self.run_switch_methods(methods_to_run)
+                self._run_switch_methods(methods_to_run)
 
-        self.default()
+        self._default()
 
-    def run_switch_methods(self, methods_to_run):
+    def _run_switch_methods(self, methods_to_run):
         for method in methods_to_run:
             try:
                 method()
