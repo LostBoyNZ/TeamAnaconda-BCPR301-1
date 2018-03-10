@@ -4,6 +4,8 @@ import errors
 class FileReader(object):  # Claye
 
     empid, gender, age, sales, bmi, salary, birthday = ([], [], [], [], [], [], [])
+    dict_root = {'': {}}
+
 
     def __init__(self):
         pass
@@ -16,20 +18,16 @@ class FileReader(object):  # Claye
         for line in file:
             # Split the file into different fields using "," to split fields
             fields = line.split(",")
+            y = fields[0]
+            f.dict_root.update({y: {'gender': fields[1], 'age': fields[2], 'sales': fields[3], 'bmi': fields[4], 'salary': fields[5], 'birthday': fields[6]}})
 
-            # Sets the split data into individual lists
-            f.empid.append(fields[0])
-            f.gender.append(fields[1])
-            f.age.append(fields[2])
-            f.sales.append(fields[3])
-            f.bmi.append(fields[4])
-            f.salary.append(fields[5])
-            f.birthday.append(fields[6])
+        # print(f.dict_root['T456']['birthday'])
+        # print(f.dict_root.keys())
 
-            # Print the file
-            print("{0} {1}".format("EMPID: ", f.empid[x]) + " Gender: " + f.gender[x] + " Age: " + f.age[x] + " Sales: " + f.sales[x] + " BMI: "
-                  + f.bmi[x] + " Salary: " + f.salary[x] + " Birthday: " + f.birthday[x])
-            x += 1
+        for key in f.dict_root:
+            print([key])
+            for value in f.dict_root[key]:
+                print(value, f.dict_root[key][value])
 
         # Close the file to free up resources (good practice)
         file.close()
@@ -48,10 +46,12 @@ class FileReader(object):  # Claye
             x = 0
             f = FileReader()
             z = open("data.txt", "a")
-            for entry in f.empid:
-                z.write(f.empid[x] + " | " + f.gender[x] + " | " + f.age[x] + " | " + f.salary[x] + " | " + f.bmi[x] + " , " + f.salary[x] + " , " + f.birthday[x])
-                x += 1
-            z.write("\n")
+            for key in f.dict_root:
+                z.write(str([key]) + '\n')
+                for value in f.dict_root[key]:
+                    h = str(f.dict_root[key][value])
+                    z.write(value + ' ' +  h)
+                    z.write("\n")
             z.close()
             print("File saved")
         elif u.upper() == "N":
@@ -59,7 +59,6 @@ class FileReader(object):  # Claye
         else:
             print(errors.ErrorHandler.get_error_message(102))
             self.write_file()
-
 
 i = FileReader()
 i.call_file()
