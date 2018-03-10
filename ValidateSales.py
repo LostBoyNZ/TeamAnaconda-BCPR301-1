@@ -15,6 +15,7 @@ class ValidateSales(object):
     def keep_letters(sales):
         keep = re.compile(r"[^a-zA-Z- ]")
         sales = keep.sub("", sales)
+
         return sales
 
     @staticmethod # do these need to be static????
@@ -65,9 +66,5 @@ class ValidateSales(object):
     # need to have wash_data function
     # need to put functions into validator/washer and import them
 
-# remove spaces from start and end of data
-# allow for spaces inside of the word, can only have 3 spaces in middle, 1 between each word
 
-
-i = ValidateSales('nine hundred and thirty-five')
 print(i.is_valid())
