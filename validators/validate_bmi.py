@@ -1,6 +1,6 @@
 # Claye
-from anaconda.validator import Validator as Va
-from anaconda.washer import Washer as Wa
+from anaconda.validators.validator import Validator as Va
+from anaconda.washers.washer import Washer as Wa
 
 
 class ValidateBmi(object):
