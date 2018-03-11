@@ -24,10 +24,10 @@ except NameError and ModuleNotFoundError and ImportError:
     pass
 
 try:
-    from commands.test import Test
+    from commands.help import Help
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(250, "test"))
+        print(err.get_error_message(250, "help"))
     pass
 
 
@@ -62,13 +62,13 @@ class CommandLine:
 
     def _process_command(self, class_to_call, switches_and_data):
         if class_to_call:
-            # try:
-            method_to_call = "Go"
-            class_name = getattr(sys.modules[__name__], class_to_call)
-            class_name(switches_and_data, self)
-            # except AttributeError:
-            #     cv.show_output(
-            #         "The command '{}' is not valid. Please enter 'Help' for a list of commands.".format(class_to_call))
+             try:
+                method_to_call = "Go"
+                class_name = getattr(sys.modules[__name__], class_to_call)
+                class_name(switches_and_data, self)
+             except AttributeError:
+                 cv.show_output(
+                     "The command '{}' is not valid. Please enter 'Help' for a list of commands.".format(class_to_call))
 
     def confirm(self, action_name):
         result = False
