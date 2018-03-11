@@ -3,9 +3,7 @@ import errors
 
 class FileReader(object):  # Claye
 
-    empid, gender, age, sales, bmi, salary, birthday = ([], [], [], [], [], [], [])
     dict_root = {'': {}}
-
 
     def __init__(self):
         pass
@@ -14,7 +12,6 @@ class FileReader(object):  # Claye
         file = open(file_name, "r")
         # Repeat for each line in the text file
         f = FileReader()
-        x = 0
         for line in file:
             # Split the file into different fields using "," to split fields
             fields = line.split(",")
@@ -27,7 +24,7 @@ class FileReader(object):  # Claye
         for key in f.dict_root:
             print([key])
             for value in f.dict_root[key]:
-                print(value, f.dict_root[key][value])
+                print(f.dict_root[key][value])
 
         # Close the file to free up resources (good practice)
         file.close()
@@ -43,14 +40,13 @@ class FileReader(object):  # Claye
     def write_file(self):
         u = input("Are you sure you want to save data? Y/N > ")
         if u.upper() == "Y":
-            x = 0
             f = FileReader()
             z = open("data.txt", "a")
             for key in f.dict_root:
                 z.write(str([key]) + '\n')
                 for value in f.dict_root[key]:
                     h = str(f.dict_root[key][value])
-                    z.write(value + ' ' +  h)
+                    z.write(value + ' ' + h)
                     z.write("\n")
             z.close()
             print("File saved")
@@ -59,6 +55,7 @@ class FileReader(object):  # Claye
         else:
             print(errors.ErrorHandler.get_error_message(102))
             self.write_file()
+
 
 i = FileReader()
 i.call_file()
