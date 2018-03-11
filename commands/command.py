@@ -11,14 +11,17 @@ class Command:
 
     def go(self, switches_and_data, command_line):
         self.my_command_line = command_line
+        has_switches = False
 
         # extract and run switch methods and extract user data, e.g. file name, from the command
         if switches_and_data:
             methods_to_run, self.user_string = self.get_switch_and_data(switches_and_data, self)
             if methods_to_run:
                 self._run_switch_methods(methods_to_run)
+                has_switches = True
 
-        self._default()
+        if has_switches == False:
+            self._default()
 
     def _run_switch_methods(self, methods_to_run):
         for method in methods_to_run:
@@ -45,4 +48,3 @@ class Command:
 
         user_string = " ".join(strings_to_keep)
         return methods_to_run, user_string
-    
