@@ -1,4 +1,9 @@
 import errors
+from data_processor import DataProcessor
+from validators.validate_gender import ValidateGender as vg
+from validators.validate_bmi import ValidateBmi as vb
+from validators.validate_date import ValidateDate as vd
+from validators.validate_empid import ValidateEmpid as ve
 
 
 class FileReader(object):  # Claye
@@ -15,25 +20,48 @@ class FileReader(object):  # Claye
         for line in file:
             # Split the file into different fields using "," to split fields
             fields = line.split(",")
-            y = fields[0]
-            f.dict_root.update({y: {'gender': fields[1], 'age': fields[2], 'sales': fields[3], 'bmi': fields[4], 'salary': fields[5], 'birthday': fields[6]}})
-
-        # print(f.dict_root['T456']['birthday'])
-        # print(f.dict_root.keys())
-
-        for key in f.dict_root:
-            print([key])
-            for value in f.dict_root[key]:
-                print(f.dict_root[key][value])
-
+            f.dict_root.update({ fields[0]: {'gender': fields[1], 'age': fields[2], 'sales': fields[3], 'bmi': fields[4], 'salary': fields[5], 'birthday': fields[6].rstrip()}})
         # Close the file to free up resources (good practice)
         file.close()
+        self.send_to_validate()
 
-    @staticmethod
-    def call_file():
+    def send_to_validate(self):
+        for k, v in self.dict_root.items():
+            if k != '':
+                print("EMPID")
+                result = ve.is_valid(k)
+                print(result)
+                for kv in v.keys():
+                    if kv == 'gender':
+                        print("GENDER")
+                        result = vg.is_valid(vg, self.dict_root[k][kv])
+                        print(result)
+                    if kv == 'bmi':
+                        print("BMI")
+                        result = vb.is_valid(vb, self.dict_root[k][kv])
+                        print(result)
+                    # if kv == 'birthday':
+                    #     print("BIRTHDAY")
+                    #     print(self.dict_root[k][kv])
+                    #     result = vd.is_valid(vd, self.dict_root[k][kv])
+                    #     print(result)
+
+                # print(self.dict_root[z][o])
+
+    # def send_to_validate(self):
+    #     for k, v in self.dict_root.items():
+    #         o = 'gender'
+    #         print(v.keys())
+    #         # print(x)
+    #         if k != '':
+    #             print(v['gender'])
+    #             print(self.dict_root[k][o])
+    #         # print(self.dict_root[z][o])
+
+    def call_file(self):
         y = input("Please enter the filename: ")
         try:
-            i.split_file(y)
+            self.split_file(y)
         except FileNotFoundError:
             print(errors.ErrorHandler.get_error_message(201))
 
@@ -59,4 +87,4 @@ class FileReader(object):  # Claye
 
 i = FileReader()
 i.call_file()
-i.write_file()
+# i.write_file()
