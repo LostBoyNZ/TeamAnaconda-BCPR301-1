@@ -64,26 +64,6 @@ class CommandLine:
                 cv.show_output(
                     "The command '{}' is not valid. Please enter 'Help' for a list of commands.".format(class_to_call))
 
-    def get_switch_and_data(self, user_data, my_command):
-        methods_to_run = []
-        strings_to_keep = []
-        split_user_data = user_data.split(" ")
-
-        for data in split_user_data:
-            try:
-                if data[0] == "/" and len(data) == 2:
-                    switch = my_command.get_switch(data[1])
-                    methods_to_run.append(switch)
-                else:
-                    not_a_switch = (data)
-                    strings_to_keep.append(not_a_switch)
-            except IndexError:
-                pass
-
-        user_string = " ".join(strings_to_keep)
-        return methods_to_run, user_string
-
-
     def confirm(self, action_name):
         result = False
         prompt = "Are you sure you want to {}? Y/N".format(action_name)
