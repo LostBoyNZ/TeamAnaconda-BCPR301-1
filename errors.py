@@ -1,7 +1,7 @@
 class ErrorHandler(object):  # Claye
 
     @staticmethod
-    def get_error_message(error_code):
+    def get_error_message(error_code, name = ""):
 
         error_dictionary = {  # CLI Errors -----
             101: "Command not supported",
@@ -16,6 +16,7 @@ class ErrorHandler(object):  # Claye
             207: "Invalid data field",
             208: "File empty",
             209: "Database empty",
+            250: "Fatal Error - {} not found".format(name),
             # Validation Errors -----
             301: "Unable to validate data",
 
