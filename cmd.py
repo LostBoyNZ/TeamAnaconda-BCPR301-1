@@ -44,13 +44,6 @@ except NameError and ModuleNotFoundError and ImportError:
         print(err.get_error_message(403, "log"))
     pass
 
-try:
-    from commands.cmd_log import Log
-except NameError and ModuleNotFoundError and ImportError:
-    if _show_non_fatal_errors:
-        print(err.get_error_message(403, "log"))
-    pass
-
 
 class CommandLine:
 
