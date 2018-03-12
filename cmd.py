@@ -38,23 +38,18 @@ except NameError and ModuleNotFoundError and ImportError:
     pass
 
 try:
-    from commands.cmd_view import View
+    from commands.cmd_log import Log
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "view"))
+        print(err.get_error_message(403, "log"))
     pass
 
-
-# to_import = {'file_name': 'commands.help', 'class_name': 'Help'}
-# for file in to_import:
-#     try:
-#         file_to_import = __import__(file['file_name'])
-#         file_to_import = getattr(sys.modules[__import__], file['file_name'])
-#     except NameError and ModuleNotFoundError and ImportError:
-#         print(sys.exc_info())
-#         print(err.get_error_message(403, file['class_name']))
-#     else:
-#         globals()[file] = file_to_import
+try:
+    from commands.cmd_log import Log
+except NameError and ModuleNotFoundError and ImportError:
+    if _show_non_fatal_errors:
+        print(err.get_error_message(403, "log"))
+    pass
 
 
 class CommandLine:
@@ -100,7 +95,11 @@ class CommandLine:
         prompt = "Are you sure you want to {}? Y/N".format(action_name)
         user_input = cv.get_input(prompt)
 
-        if user_input[0].lower() == "y":
-            result = True
+        try:
+            if user_input[0].lower() == "y":
+                result = True
+        except IndexError:
+            print(err.get_error_message(102))
+            self.confirm(action_name)
 
         return result
