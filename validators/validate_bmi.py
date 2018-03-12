@@ -7,10 +7,12 @@ class ValidateBmi(object):
 
     def is_valid(self, to_check):
         result = False
-        list_bmi = ['Obesity', 'Overweight', 'Normal', 'Underweight']
+        list_bmi = ['Obese', 'Obesity', 'Overweight', 'Normal', 'Underweight']
         g = to_check
         g = Wa.wash_all_but_string_characters(g)
         g = Wa.set_case(g)
         if Va.is_in_list(g, list_bmi):
+            if g == 'Obese':
+                g == 'Obesity'
             result = True
         return g, result
