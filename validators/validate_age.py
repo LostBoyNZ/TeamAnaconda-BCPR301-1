@@ -1,6 +1,6 @@
 # Rochelle
-from validator import Validator as Va
-from washer import Washer as Wa
+from validators.validator import Validator as Va
+from washers.washer import Washer as Wa
 
 
 class ValidateAge(object):
@@ -70,3 +70,9 @@ print(12, i.is_valid())
 
 i = ValidateAge('1')
 print(13, i.is_valid())
+
+i = ValidateAge('-1')
+print(14, i.is_valid())
+
+i = ValidateAge(-1)
+print(15, i.is_valid())
