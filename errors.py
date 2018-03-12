@@ -17,8 +17,11 @@ class ErrorHandler(object):  # Claye
             208: "File empty",
             209: "Database empty",
             # System File Errors ----- # Graham
+            401: "Warning - {} file could not be created".format(name),
+            402: "Warning - Unknown error creating {} file".format(name),
             403: "Warning - {} not found".format(name),
             404: "Fatal Error - {} not found".format(name),
+            405: "Error - {} file is read only".format(name),
             # Validation Errors -----
             301: "Unable to validate data",
 
