@@ -20,8 +20,6 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class ValidateDate():
 
-    valid_date = ""
-
     def split_string(self, delimiter, data):
         return data.split(delimiter)
 
@@ -90,35 +88,34 @@ class ValidateDate():
 
         return format
 
-    def wash_data(self, data_to_wash):
+    @staticmethod
+    def wash_data(data_to_wash):
         # replace any non-word character with a forward slash
         data_to_wash =  Washer.replace_x_with_y("\W+", "/", data_to_wash)
         # remove st, nd and rd from date, e.g. 21st, 22nd, 23rd
         data_to_wash =  Washer.replace_x_with_y("st|nd|rd", "", data_to_wash)
 
-        data_to_wash = self.add_zeros(data_to_wash)
-
-        valid_date = data_to_wash
-
         return data_to_wash
 
     def is_valid(self, data_to_validate):
         result = False
-        #date_format = '%d %m %Y'
 
-        data_to_validate = self.wash_data(data_to_validate)
+        washed_data = self.wash_data(data_to_validate)
 
+        # add zeros if needed
+        washed_data = self.add_zeros(washed_data)
         # remove all spaces
-        data_to_validate = data_to_validate.strip()
+        washed_data = washed_data.strip()
 
-        #self.data = self.month_string_to_number(self.data)
-        date_format = self.determine_date_format(data_to_validate)
-        date_to_check = Washer.replace_x_with_y('\W+', " ", data_to_validate)
+        date_format = self.determine_date_format(washed_data)
+        date_to_check = Washer.replace_x_with_y('\W+', " ", washed_data)
         result = self.is_real_date(date_to_check, date_format)
+        if result == True:
+            date_output = Washer.replace_x_with_y(" ", "/", date_to_check)
+        else:
+            date_output = date_to_check
 
-        print(data_to_validate + " is valid: " + str(result))
-
-        return result
+        return date_output, result
 
 #
 # Add some asserts like...
@@ -126,23 +123,3 @@ class ValidateDate():
 # if not condition:
 #    raise AssertionError()
 #
-#
-
-i = ValidateDate()
-
-result = i.is_valid("01-02-2020")
-print(i.valid_date)
-result = i.is_valid("32-02-2020")
-print(i.valid_date)
-result = i.is_valid("18-12-2018")
-print(i.valid_date)
-result = i.is_valid("03 February 2018")
-print(i.valid_date)
-result = i.is_valid("3rd Jan 2018")
-print(i.valid_date)
-result = i.is_valid("1st Jan 2018")
-print(i.valid_date)
-result = i.is_valid("2nd Jan 2018")
-print(i.valid_date)
-result = i.is_valid("1/1/1998")
-print(i.valid_date)
