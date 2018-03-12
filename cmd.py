@@ -37,6 +37,13 @@ except NameError and ModuleNotFoundError and ImportError:
         print(err.get_error_message(403, "process"))
     pass
 
+try:
+    from commands.cmd_view import View
+except NameError and ModuleNotFoundError and ImportError:
+    if _show_non_fatal_errors:
+        print(err.get_error_message(403, "view"))
+    pass
+
 
 # to_import = {'file_name': 'commands.help', 'class_name': 'Help'}
 # for file in to_import:

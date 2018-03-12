@@ -2,7 +2,7 @@
 import sys
 
 
-class Start():
+class Start:
     """
     Python Database Handler [Version 1.0]
     (c) 2018 Team Anaconda Ltd, all rights reserved.
@@ -26,5 +26,6 @@ class Start():
 
         print(self.__doc__)
         cmd().run_commandline()
+
 
 i = Start()
