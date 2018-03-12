@@ -16,7 +16,9 @@ class ErrorHandler(object):  # Claye
             207: "Invalid data field",
             208: "File empty",
             209: "Database empty",
-            250: "Fatal Error - {} not found".format(name),
+            # System File Errors ----- # Graham
+            403: "Warning - {} not found".format(name),
+            404: "Fatal Error - {} not found".format(name),
             # Validation Errors -----
             301: "Unable to validate data",
 
