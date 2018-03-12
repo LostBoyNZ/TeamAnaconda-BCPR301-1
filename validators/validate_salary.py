@@ -5,65 +5,61 @@ from washers.washer import Washer as Wa
 
 class ValidateSalary(object):
     # write comments to explain!!!!!!!!!!!
-    def __init__(self, salary):
-        self.salary = salary
+    def __init__(self):
         self.min_salary = 0
         self.min_length = 2
         self.max_length = 3
 
-    def is_valid(self):
-        salary = self.salary
+    def is_valid(self, salary):
         result = False
         try:
             if isinstance(salary, int):
-                self.salary = Wa.to_string(salary, self.min_length)
-                if Va.is_minimum(self.salary, self.min_salary):
-                    result = Va.is_within_length(Va, self.min_length, self.max_length, str(self.salary))
+                salary = Wa.to_string(salary, self.min_length)
+                if Va.is_minimum(salary, self.min_salary):
+                    result = Va.is_within_length(Va, self.min_length, self.max_length, str(salary))
             elif isinstance(int(Wa.keep_only_nums(salary)), int):
                 if Wa.strip_string(salary):
                     salary = Wa.keep_only_nums(salary)
-                    self.salary = Wa.to_string(salary, self.min_length)
-                    if Va.is_minimum(self.salary, self.min_salary):
-                        result = Va.is_within_length(Va, self.min_length, self.max_length, str(self.salary))
+                    salary = Wa.to_string(salary, self.min_length)
+                    if Va.is_minimum(salary, self.min_salary):
+                        result = Va.is_within_length(Va, self.min_length, self.max_length, str(salary))
             else:
-                self.salary = salary
                 result = False
-            return self.salary, result
+            return salary, result
         except ValueError:
             result = False
-            self.salary = salary
-            return self.salary, result
+            return salary, result
 
 
-i = ValidateSalary('@$    9  ^&dbnd  ')
-print(1, i.is_valid())
+i = ValidateSalary()
+print(1, i.is_valid('@$    9  ^&dbnd  '))
 
-i = ValidateSalary('       #$%@$     90 adddfh')
-print(2, i.is_valid())
+i = ValidateSalary()
+print(2, i.is_valid('       #$%@$     90 adddfh'))
 
-i = ValidateSalary(9)
-print(3, i.is_valid())
+i = ValidateSalary()
+print(3, i.is_valid(9))
 
-i = ValidateSalary(999)
-print(4, i.is_valid())
+i = ValidateSalary()
+print(4, i.is_valid(999))
 
-i = ValidateSalary('  nine hundred and thirty five  ')
-print(5, i.is_valid())
+i = ValidateSalary()
+print(5, i.is_valid('  nine hundred and thirty five  '))
 
-i = ValidateSalary('  10')
-print(6, i.is_valid())
+i = ValidateSalary()
+print(6, i.is_valid('  10'))
 
-i = ValidateSalary('  1= ')
-print(7, i.is_valid())
+i = ValidateSalary()
+print(7, i.is_valid('  1= '))
 
-i = ValidateSalary('  -1 ')
-print(8, i.is_valid())
+i = ValidateSalary()
+print(8, i.is_valid('  -1 '))
 
-i = ValidateSalary('  111 ')
-print(9, i.is_valid())
+i = ValidateSalary()
+print(9, i.is_valid('  111 '))
 
-i = ValidateSalary('  22 ')
-print(10, i.is_valid())
+i = ValidateSalary()
+print(10, i.is_valid('  22 '))
 
-i = ValidateSalary('  222 ')
-print(11, i.is_valid())
+i = ValidateSalary()
+print(11, i.is_valid('  222 '))
