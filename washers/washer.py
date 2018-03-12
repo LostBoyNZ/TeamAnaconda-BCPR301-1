@@ -42,3 +42,28 @@ class Washer(object):
         to_wash = re.sub(r'[^\w]', '', to_wash)
 
         return to_wash
+
+    # Rochelle
+    def keep_only_nums(data):
+        keep = re.compile(r"[^0-9]")
+        data = keep.sub("", data)
+        data = data.strip()
+        return data
+
+    # Rochelle
+    def strip_string(data):
+        data = data.lstrip()
+        data = data.rstrip()
+        return data
+
+    # Rochelle
+    def to_string(data, min_length):
+        if 0 < len(str(data)) < min_length:
+            i = ''
+            for num in range(0, min_length - len(str(data))):
+                i += '0'
+            data = i + str(data)
+        else:
+            data = str(data)
+        return data
+

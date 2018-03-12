@@ -2,7 +2,7 @@ import re
 
 class Validator(object):
     # Graham
-    def is_within_length(min_length, max_length, data):
+    def is_within_length(self, min_length, max_length, data):
         result = False
 
         if len(data) >= min_length and len(data) <= max_length:
@@ -37,4 +37,12 @@ class Validator(object):
             result = True
         else:
             result = False
+
+        return result
+
+    # Rochelle
+    def is_minimum(data, minimum):
+        result = False
+        if int(data) >= minimum:
+            result = True
         return result
