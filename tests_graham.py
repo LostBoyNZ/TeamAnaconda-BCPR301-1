@@ -12,15 +12,8 @@ class Tests_Graham(unittest.TestCase):
         # be executed after each test case
         pass
 
-    # VALID DATES
-
     # Graham
-    def test_perfect_date(self):
-        # Setup
-        test_name = "Date Validator Test #1"
-        data_to_test = "28/21/1998"
-        class_to_test = vd.ValidateDate()
-        expected_result = ["28/01/1998", True]
+    def run_test(self, expected_result, test_name, class_to_test, data_to_test):
 
         # Action
         result = class_to_test.is_valid(data_to_test)
@@ -28,8 +21,44 @@ class Tests_Graham(unittest.TestCase):
         # Assert
         try:
             self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
-        except:
+        except AssertionError:
             print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+        else:
+            print("{} Passed".format(test_name))
+
+    # VALID DATES
+
+    # Graham
+    def test_perfect_date_01(self):
+        # Setup
+        test_name = "Date Validator Test #1"
+        data_to_test = "28/01/1998"
+        class_to_test = vd.ValidateDate()
+        expected_result = ["28/01/1998", True]
+
+        # Action & Assert
+        self.run_test(expected_result, test_name, class_to_test, data_to_test)
+
+    def test_perfect_date_02(self):
+        # Setup
+        test_name = "Date Validator Test #2"
+        data_to_test = "01 01 1998"
+        class_to_test = vd.ValidateDate()
+        expected_result = ["01/01/1998", True]
+
+        # Action & Assert
+        self.run_test(expected_result, test_name, class_to_test, data_to_test)
+
+    def test_bad_date_01(self):
+        # Setup
+        test_name = "Date Validator Test #3"
+        data_to_test = "32/01/1998"
+        class_to_test = vd.ValidateDate()
+        expected_result = ["32/01/1998", False]
+
+        # Action & Assert
+        self.run_test(expected_result, test_name, class_to_test, data_to_test)
+
 
 if __name__ == '__main__':
     # unittest.main(verbosity=2)  # with more details
