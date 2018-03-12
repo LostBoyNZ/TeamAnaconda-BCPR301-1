@@ -29,7 +29,7 @@ class ValidateEmpid():
         # Wash the data before verifying it
         washed_data = Washer.keep_only_these_in_string("a-zA-Z0-9", data_to_validate)
         washed_data = Washer.set_case(washed_data)
-        print(washed_data)
+
         # \D where a non-number should be, and \d where a number should be
         if Validator.is_correct_pattern("\D\d\d\d", washed_data) == True:
             correct_format = True
@@ -43,14 +43,6 @@ class ValidateEmpid():
         if washed_data.isalnum() == True:
             correct_characters = True
 
-        print(correct_length)
-        print(correct_number_of_characters)
-        print(correct_characters)
-        print(correct_format)
         is_valid = correct_length and correct_number_of_characters and correct_characters and correct_format
-        id_output = washed_data
-        print("----")
-        print(is_valid)
-        print(id_output)
-        print("----")
-        return id_output, is_valid
+
+        return washed_data, is_valid
