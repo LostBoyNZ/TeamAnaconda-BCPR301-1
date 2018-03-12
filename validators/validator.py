@@ -37,12 +37,4 @@ class Validator(object):
             result = True
         else:
             result = False
-
-        return result
-
-    # Rochelle
-    def is_minimum(data, minimum):
-        result = False
-        if int(data) >= minimum:
-            result = True
         return result
