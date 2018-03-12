@@ -5,7 +5,9 @@ import sys
 class Start():
     """
     Python Database Handler [Version 1.0]
-    (c) 2018 Claye Barry, Rochelle Wilson, Graham Parker
+    (c) 2018 Team Anaconda Ltd, all rights reserved.
+
+    Authors: Claye Barry, Rochelle Wilson, Graham Parker
 
     """
     def __init__(self):
