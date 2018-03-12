@@ -3,7 +3,11 @@ import sys
 
 
 class Start():
+    """
+    Python Database Handler [Version 1.0]
+    (c) 2018 Claye Barry, Rochelle Wilson, Graham Parker
 
+    """
     def __init__(self):
 
         try:
@@ -18,6 +22,7 @@ class Start():
             print(err.get_error_message(404, "cmd"))
             sys.exit()
 
+        print(self.__doc__)
         cmd().run_commandline()
 
 i = Start()
