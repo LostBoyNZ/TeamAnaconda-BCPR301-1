@@ -1,8 +1,7 @@
 # Rochelle
-# from validators.validator import Validator as Va
-# from washers.washer import Washer as Wa
-from validator import Validator as Va
-from washer import Washer as Wa
+from validators.validator import Validator as Va
+from washers.washer import Washer as Wa
+
 
 
 class ValidateSalary(object):
@@ -31,37 +30,3 @@ class ValidateSalary(object):
         except ValueError:
             result = False
             return salary, result
-
-
-i = ValidateSalary()
-print(1, i.is_valid('@$    9  ^&dbnd  '))
-
-i = ValidateSalary()
-print(2, i.is_valid('       #$%@$     90 adddfh'))
-
-i = ValidateSalary()
-print(3, i.is_valid(9))
-
-i = ValidateSalary()
-print(4, i.is_valid(999))
-
-i = ValidateSalary()
-print(5, i.is_valid('  nine hundred and thirty five  '))
-
-i = ValidateSalary()
-print(6, i.is_valid('  10'))
-
-i = ValidateSalary()
-print(7, i.is_valid('  1= '))
-
-i = ValidateSalary()
-print(8, i.is_valid('  -1 '))
-
-i = ValidateSalary()
-print(9, i.is_valid('  111 '))
-
-i = ValidateSalary()
-print(10, i.is_valid('  22 '))
-
-i = ValidateSalary()
-print(11, i.is_valid('  222 '))
