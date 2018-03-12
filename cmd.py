@@ -3,7 +3,6 @@
 _show_non_fatal_errors = True
 
 import sys
-import os
 
 try:
     from errors import ErrorHandler as err
