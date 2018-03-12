@@ -3,6 +3,7 @@
 _show_non_fatal_errors = True
 
 import sys
+import os
 
 try:
     from errors import ErrorHandler as err
@@ -75,7 +76,7 @@ class CommandLine:
 
         # if there's any more to the string, that's switches and user data, e.g. a file name
         if len(split_input) > 1:
-            switches_and_data = split_input[1]
+            switches_and_data = split_input[1].lower()
 
         self._process_command(class_to_call, switches_and_data)
 
