@@ -17,10 +17,17 @@ except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - command.py in commands folder not found.")
 
 try:
-    from commands.quit import Quit
+    from commands.cmd_quit import Quit
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
         print(err.get_error_message(403, "quit"))
+    pass
+
+try:
+    from commands.cmd_process import Process
+except NameError and ModuleNotFoundError and ImportError:
+    if _show_non_fatal_errors:
+        print(err.get_error_message(403, "process"))
     pass
 
 
@@ -51,20 +58,22 @@ class Help(Command):
 
     @staticmethod
     def _list_all_commands():
-        print("List of all the commands coming soon!")
 
-        from inspect import getsourcefile
-        from os.path import abspath
+        path = './commands'
 
-        commands_folder = abspath(getsourcefile(lambda: 0))
+        print("Supported commands: \n")
 
-        print(commands_folder)
+        for root, dirs, files in os.walk(path):
+            for filename in files:
+                split_filename = filename.split(".", 1)
+                if split_filename[0].startswith("cmd_") and split_filename[1].endswith("py"):
+                    # Hide the cmd_ from the start of the file name
+                    filename = split_filename[0]
+                    filename = filename[4:]
+                    filename = filename.upper()
+                    print(filename)
 
-        currentFile = __file__
-        realPath = os.path.realpath(currentFile)
-        dirPath = os.path.dirname(realPath)
-
-        print(dirPath)
+        print("\nFor more information on specific commands, type HELP command-name")
 
     @staticmethod
     def _get_help_from_class(class_to_call):

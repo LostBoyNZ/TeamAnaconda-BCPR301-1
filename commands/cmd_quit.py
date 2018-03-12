@@ -16,11 +16,12 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class Quit(Command):
     """
-    Docstring to be read as the help file for this command
-    __doc__ & help()
+    Exits the software with a prompt to confirm.
 
-    QUIT [/Q]
-    /Q      Quiet mode, do not ask for confirmation before quitting
+    QUIT /? /Q
+
+    /Q	Quiet mode disables the confirmation prompt
+    /?	Help about the Quit command
     """
 
     # translates switches into the method names, e.g. /q switch would run quit
@@ -28,13 +29,17 @@ class Quit(Command):
         return {
             'q': self._quit,
             'b': self._bye,
-            'm': self._message
+            'm': self._message,
+            '?': self._help
         }.get(switch, '')
+
+    def test(self):
+        print("TEST")
 
     # put the default action for this class (no switches used) here
     def _default(self):
         if self.my_command_line.confirm("quit"):
-            self.quit()
+            self._quit()
 
     # put the methods for each switch here
     def _quit(self):
@@ -45,3 +50,6 @@ class Quit(Command):
 
     def _message(self):
         print(self.user_string)
+
+    def _help(self):
+        print(self.__doc__)
