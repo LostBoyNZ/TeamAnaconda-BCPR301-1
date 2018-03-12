@@ -1,6 +1,5 @@
 import re
 
-
 class Validator(object):
     # Graham
     def is_within_length(self, min_length, max_length, data):
@@ -38,6 +37,7 @@ class Validator(object):
             result = True
         else:
             result = False
+
         return result
 
     # Rochelle
