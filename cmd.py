@@ -13,22 +13,41 @@ except NameError and ModuleNotFoundError and ImportError:
 try:
     from views.console_view import ConsoleView as cv
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(250, "console_view"))
+    print(err.get_error_message(404, "console_view"))
     sys.exit()
 
 try:
-    from commands.quit import Quit
+    from commands.cmd_quit import Quit
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(250, "quit"))
+        print(err.get_error_message(403, "quit"))
     pass
 
 try:
-    from commands.help import Help
+    from commands.cmd_help import Help
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(250, "help"))
+        print(err.get_error_message(403, "help"))
     pass
+
+try:
+    from commands.cmd_process import Process
+except NameError and ModuleNotFoundError and ImportError:
+    if _show_non_fatal_errors:
+        print(err.get_error_message(403, "process"))
+    pass
+
+
+# to_import = {'file_name': 'commands.help', 'class_name': 'Help'}
+# for file in to_import:
+#     try:
+#         file_to_import = __import__(file['file_name'])
+#         file_to_import = getattr(sys.modules[__import__], file['file_name'])
+#     except NameError and ModuleNotFoundError and ImportError:
+#         print(sys.exc_info())
+#         print(err.get_error_message(403, file['class_name']))
+#     else:
+#         globals()[file] = file_to_import
 
 
 class CommandLine:
@@ -63,7 +82,6 @@ class CommandLine:
     def _process_command(self, class_to_call, switches_and_data):
         if class_to_call:
              try:
-                method_to_call = "Go"
                 class_name = getattr(sys.modules[__name__], class_to_call)
                 class_name(switches_and_data, self)
              except AttributeError:
