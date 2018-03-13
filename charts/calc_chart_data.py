@@ -56,7 +56,6 @@ class CalcData(object):
             fields = line.split(",")
             if 'valid 1' in fields:
                 for item in fields[1:-1]:
-                    print(item)
                     items = item.split(" ")
                     dict = {items[0]: items[1]}
                     for key, value in dict.items():
