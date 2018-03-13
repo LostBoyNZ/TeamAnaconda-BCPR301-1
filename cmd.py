@@ -31,17 +31,17 @@ except NameError and ModuleNotFoundError and ImportError:
     pass
 
 try:
-    from commands.cmd_process import Process
-except NameError and ModuleNotFoundError and ImportError:
-    if _show_non_fatal_errors:
-        print(err.get_error_message(403, "process"))
-    pass
-
-try:
     from commands.cmd_log import Log
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
         print(err.get_error_message(403, "log"))
+    pass
+
+try:
+    from commands.cmd_process import Process
+except NameError and ModuleNotFoundError and ImportError:
+    if _show_non_fatal_errors:
+        print(err.get_error_message(403, "process"))
     pass
 
 
@@ -77,8 +77,8 @@ class CommandLine:
     def _process_command(self, class_to_call, switches_and_data):
         if class_to_call:
              try:
-                class_name = getattr(sys.modules[__name__], class_to_call)
-                class_name(switches_and_data, self)
+                 class_name = getattr(sys.modules[__name__], class_to_call)
+                 class_name(switches_and_data, self)
              except AttributeError:
                  cv.show_output(
                      "The command '{}' is not valid. Please enter 'Help' for a list of commands.".format(class_to_call))
