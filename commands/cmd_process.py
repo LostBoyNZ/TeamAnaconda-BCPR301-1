@@ -16,7 +16,7 @@ except NameError and ModuleNotFoundError and ImportError:
 try:
     from file_reader import FileReader
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - file_reader.py in commands folder not found.")
+    print("Fatal Error - file_reader.py not found.")
 
 
 class Process(Command):
