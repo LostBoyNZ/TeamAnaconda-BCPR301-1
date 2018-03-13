@@ -4,15 +4,17 @@ import matplotlib.pyplot as plt
 class ChartLine:
 
     @staticmethod
-    def create_line_grid(a_list, s_list):
-        s_list = [int(i) for i in s_list]
-        a_list = [int(i) for i in a_list]
-        a_list, s_list = zip(*sorted(zip(a_list, s_list)))
+    def create_line_grid(age_list, salary_list):
+        salary_list = [int(i) for i in salary_list]
+        age_list = [int(i) for i in age_list]
+        age_list, salary_list = zip(*sorted(zip(age_list, salary_list)))
+        plt.plot(age_list[0:], salary_list[0:])
         plt.title('Salary Vs Age')
-        plt.grid(True)
-        plt.plot(a_list[0:], s_list[0:])
         plt.ylabel('Salary')
         plt.xlabel('Age')
+        plt.grid(True)
+        fig = plt.gcf()
+        fig.canvas.set_window_title('Salary Vs Age')
         plt.show()
 
 
