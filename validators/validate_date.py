@@ -24,17 +24,22 @@ class ValidateDate():
         return data.split(delimiter)
 
     def add_zeros(self, data):
-        split_date = self.split_string("/", data)
-        day = split_date[0]
-        month = split_date[1]
-        year = split_date[2]
+        try:
+            split_date = self.split_string("/", data)
+            day = split_date[0]
+            month = split_date[1]
+            year = split_date[2]
 
-        if day.isdigit():
-            day = day.zfill(2)
-        if month.isdigit():
-            month = month.zfill(2)
+            if day.isdigit():
+                day = day.zfill(2)
+            if month.isdigit():
+                month = month.zfill(2)
 
-        return day + "/" + month + "/" + year
+            output = day + "/" + month + "/" + year
+        except IndexError:
+            output = data
+
+        return output
 
     def is_real_date(self, data, date_format):
         result = False
