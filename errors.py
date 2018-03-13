@@ -17,6 +17,7 @@ class ErrorHandler(object):  # Claye
             207: "Invalid data field",
             208: "File empty",
             209: "Database empty",
+            210: "No valid data found",  # Rochelle
             # Validation Errors -----
             301: "Unable to validate data",
             # System File Errors ----- # Graham
