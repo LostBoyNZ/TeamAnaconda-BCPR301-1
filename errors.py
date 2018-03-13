@@ -29,4 +29,7 @@ class ErrorHandler(object):  # Claye
             # Database Errors ----- # Graham
             501: "Error - {} key is not valid, please try again".format(name),
         }
-        return error_dictionary[error_code]
+        try:
+            return error_dictionary[error_code]
+        except KeyError:
+            return "Unknown Error"
