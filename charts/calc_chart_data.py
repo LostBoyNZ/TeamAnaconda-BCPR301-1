@@ -41,11 +41,12 @@ class CalcData(object):
     def is_valid(self, file_contents):
         result = False
         values = ['gender', 'age', 'birthday', 'bmi', 'sales', 'salary']
-        str1 = ''.join(file_contents)
-        if values[0] in str1 and values[1] in str1 and values[2] in str1 and values[3] in str1 and values[4] in str1 and values[5]:
-        # for value in values:
-        #     if value in str1:
-            print(values[0],values[1],values[2],values[3],values[4],values[5])
+        contents = ''.join(file_contents)
+        count = 0
+        for value in values:
+            if value in contents:
+                count += 1
+        if count == len(values):
             result = True
         return result
 
@@ -109,9 +110,6 @@ class CalcData(object):
                             self.count_birth_nov += 1
                         elif month == '12':
                             self.count_birth_dec += 1
-
-
-    # def calc_birthday(self):
 
     def line_chart(self):
         i = ChartLine()
