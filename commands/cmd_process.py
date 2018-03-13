@@ -1,4 +1,4 @@
-# Graham
+# Claye
 
 import sys
 
@@ -21,25 +21,21 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class Process(Command):
     """
-    Description:
         Fetches data from a file, validates the data and saves the washed data into a local file.
-    Syntax:
-        IMPORT [[c:\data\database.csv]
-        -H		Hide all errors of bad data
-        -E		Display all errors of bad data
-    More Detail:
+
+        PROCESS [/D]
+
+        -D		Display details of data validation
+
         Supported file formats include:
-        .txt
-        .csv
-    The data will be loaded, validated and clean data will be stored in a local file. All invalid data will be written to the log.txt file, which can be viewed with the Log command.
+            .txt
+            .csv
     """
 
     # translates switches into the method names, e.g. /q switch would run quit
     def get_switch(self, switch):
         return {
-            'q': self._quit,
-            'b': self._bye,
-            'm': self._message,
+            'd': self._detail,
             '?': self._help
         }.get(switch, '')
 
@@ -50,17 +46,12 @@ class Process(Command):
     # put the default action for this class (no switches used) here
     def _default(self):
         i = FileReader()
-        FileReader.call_file(i)
+        FileReader.call_file(i, '')
 
     # put the methods for each switch here
-    def _quit(self):
-        sys.exit()
-
-    def _bye(self):
-        print("Bye bye!")
-
-    def _message(self):
-        print(self.user_string)
+    def _detail(self):
+        i = FileReader()
+        FileReader.call_file(i, 'd')
 
     def _help(self):
         print(self.__doc__)
