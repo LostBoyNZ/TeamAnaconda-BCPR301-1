@@ -12,11 +12,13 @@ try:
     from commands.command import Command
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - command.py in commands folder not found.")
+    sys.exit()
 
 try:
     from file_reader import FileReader
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - file_reader.py not found.")
+    sys.exit()
 
 
 class Process(Command):
