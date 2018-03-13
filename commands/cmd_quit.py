@@ -18,7 +18,7 @@ class Quit(Command):
     """
     Exits the software with a prompt to confirm.
 
-    QUIT /? /Q
+    QUIT [/?] [/Q]
 
     /Q	Quiet mode disables the confirmation prompt
     /?	Help about the Quit command

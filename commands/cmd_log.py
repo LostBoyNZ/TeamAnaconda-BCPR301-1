@@ -28,9 +28,9 @@ class Log(Command):
     '''
     Outputs the lines of the log.txt file.
 
-    LOG /? /R
+    LOG [/?] [/R]
 
-    /R	Output the log file in reverse
+    /R	Output the log file in reverse (latest on top)
     /W  Wipes the log file after confirmation
     /?	Help about the Quit command
     '''
@@ -51,6 +51,8 @@ class Log(Command):
 
         file_contents = lfh.load_file_data(lfh, self.FILE_NAME)
         direction = ""
+        if len(file_contents) == 0:
+            print(err.get_error_message(208))
 
         lfh.output_file(lfh, file_contents, direction)
 
