@@ -19,7 +19,7 @@ class Start:
             sys.exit()
 
         try:
-            from cmd import CommandLine as cmd
+            from cmdline import CommandLine as cmd
         except NameError and ModuleNotFoundError and ImportError:
             print(err.get_error_message(404, "cmd"))
             sys.exit()
