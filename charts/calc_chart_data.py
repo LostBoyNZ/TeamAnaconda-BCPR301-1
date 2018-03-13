@@ -69,21 +69,12 @@ class CalcData(object):
                             elif key == 'sales':
                                 sales = int(value)
                                 if 0 <= sales <= 249:
-                                    print("g1: " + value)
-                                    print(type(value))
                                     self.count_sales_group1 += 1
-                                    print("")
                                 elif 250 <= sales <= 499:
-                                    print("g2: " + value)
-                                    print(type(value))
                                     self.count_sales_group2 += 1
                                 elif 500 <= sales <= 749:
-                                    print("g3: " + value)
-                                    print(type(value))
                                     self.count_sales_group3 += 1
                                 elif 750 <= sales <= 999:
-                                    print("g4: " + value)
-                                    print(type(value))
                                     self.count_sales_group4 += 1
                             elif key == 'bmi':
                                 if value == 'Overweight':
