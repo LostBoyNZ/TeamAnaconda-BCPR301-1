@@ -29,7 +29,8 @@ class ErrorHandler(object):  # Claye
             # Database Errors ----- # Graham
             501: "Error - {} key is not valid, please try again".format(name),
             # Chart Errors ----- # Graham
-            601: "Data in this chart type not supported"
+            601: "Data in this chart type not supported",
+            602: "Not enough data given to the chart"
         }
         try:
             return error_dictionary[error_code]
