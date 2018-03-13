@@ -63,9 +63,12 @@ class CommandLine:
 
     prompt = ""
     user_name = ""
+    debug_mode = False
 
     def __init__(self):
         self.prompt = "> "
+        if self.debug_mode:
+            self.prompt = "debug> "
 
     def run_commandline(self, user_args):
         self._handle_args(user_args)
@@ -105,12 +108,16 @@ class CommandLine:
 
     def _process_command(self, class_to_call, switches_and_data):
         if class_to_call:
-             try:
+            if self.debug_mode == False:
+                try:
+                    class_name = getattr(sys.modules[__name__], class_to_call)
+                    class_name(switches_and_data, self)
+                except AttributeError:
+                    cv.show_output(
+                    "The command '{}' is not valid. Please enter 'Help' for a list of commands.".format(class_to_call))
+            else:
                 class_name = getattr(sys.modules[__name__], class_to_call)
                 class_name(switches_and_data, self)
-             except AttributeError:
-                 cv.show_output(
-                     "The command '{}' is not valid. Please enter 'Help' for a list of commands.".format(class_to_call))
 
     def confirm(self, action_name):
         result = False
