@@ -93,4 +93,3 @@ class LogFileHandler(object):
     def append_file(file_name, data_to_write):
         file = open(file_name, "a+")
         file.write(data_to_write + "\n")
-        print("\"{}\" written to log file".format(data_to_write))
