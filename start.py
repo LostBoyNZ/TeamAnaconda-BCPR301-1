@@ -1,6 +1,6 @@
 # Graham
 import sys
-
+import os
 
 class Start:
     """
@@ -11,6 +11,8 @@ class Start:
 
     """
     def __init__(self):
+
+        print("Loading...")
 
         try:
             from errors import ErrorHandler as err
@@ -24,6 +26,7 @@ class Start:
             print(err.get_error_message(404, "cmd"))
             sys.exit()
 
+        os.system('cls')
         print(self.__doc__)
         cmd().run_commandline()
 
