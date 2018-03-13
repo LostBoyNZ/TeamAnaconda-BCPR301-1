@@ -1,4 +1,4 @@
-# Claye
+# Graham
 
 import sys
 
@@ -37,6 +37,9 @@ class Process(Command):
     # translates switches into the method names, e.g. /q switch would run quit
     def get_switch(self, switch):
         return {
+            'q': self._quit,
+            'b': self._bye,
+            'm': self._message,
             '?': self._help
         }.get(switch, '')
 
@@ -49,5 +52,16 @@ class Process(Command):
         i = FileReader()
         FileReader.call_file(i)
 
+    # put the methods for each switch here
+    def _quit(self):
+        sys.exit()
+
+    def _bye(self):
+        print("Bye bye!")
+
+    def _message(self):
+        print(self.user_string)
+
     def _help(self):
         print(self.__doc__)
+
