@@ -13,6 +13,7 @@ except ModuleNotFoundError and ImportError:
     print("matplotlib.pyplot not avaliable")
     sys.exit()
 
+
 class ChartPie(object): # Graham
 
     def create_pie_chart(self, data, data_type):
