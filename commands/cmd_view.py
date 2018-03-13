@@ -1,6 +1,7 @@
-# Rochelle
-
+# Graham
 import sys
+import errors
+from charts.calc_chart_data import CalcData
 
 try:
     from errors import ErrorHandler as err
@@ -11,9 +12,11 @@ except NameError and ModuleNotFoundError and ImportError:
 try:
     from commands.command import Command
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - command.py in commands folder not found.")
+    print(err.get_error_message(404, "command"))
+    sys.exit()
 
 
+# Rochelle
 class View(Command):
     """
     Description:
@@ -21,9 +24,9 @@ class View(Command):
 
     VIEW /L /B /P /? [datatype]
 
-    /L	Show line chart [sales] or [salary]
+    /L	Show line chart []
     /B  Show bar chart [bmi] or [birthday]
-    /P  Show pie chart [age] or [gender]
+    /P  Show pie chart [sales] or [gender]
     /?	Help about the View command
 
     [datatype]
@@ -40,40 +43,71 @@ class View(Command):
             '?': self._help
         }.get(switch, '')
 
+    # Rochelle
     def get_data(self):
-        pass
-    # get data for counting
+        # choose file to get data from
+        file_name = input("Please enter the filename to read data from >>> ")
+        # check file exists
+        try:
+            file_contents = self._load_file_data(file_name)
 
-    def count_data(self):
-        pass
-    # count data
+            i = CalcData()
 
-    def test(self):
-        print("TEST")
+            try:
 
-    # put the default action for this class (no switches used) here
+                if i.is_valid(file_contents):
+                    i.calculate(file_contents)
+                    return i
+                else:
+                    print(err.get_error_message(210))
+            except:
+                print(err.get_error_message(210))
+
+        except FileNotFoundError:
+            print(errors.ErrorHandler.get_error_message(201))
+
+    # Graham
+    def _load_file_data(self, file_name):
+        file_contents = []
+
+        try:
+            with open(file_name, "r") as file:
+                for line in file:
+                    a_line = line.rstrip()
+                    file_contents.append(a_line)
+            file.close()
+        except FileNotFoundError:
+            print(err.get_error_message(403, "requested file"))
+
+        return file_contents
+
     def _default(self):
+        # default is show user help
         self._help()
-        # cbi.ChartBirthday([3, 2, 7, 6, 5, 2, 1, 10, 4, 9, 6, 3])
-        # cbm.
-    #         send to self.help so they know what to input
 
-    # put the methods for each switch here
     def _line(self):
-        pass
-    #     line chart for sales and salary
+        # line chart for sales and salary
+        valid_data = self.get_data()
+        if valid_data:
+            valid_data.line_chart()
 
     def _bar(self):
-        print("Bye bye!")
-    #     bar chart for birthday or bmi
+        # bar chart for birthday or bmi
+        if self.user_string == 'bmi' or self.user_string == 'birthday':
+            valid_data = self.get_data()
+            if valid_data:
+                valid_data.bar_chart(self.user_string)
+        else:
+            print(err.get_error_message(102))
 
     def _pie(self):
-        print("Bye bye!")
-    #     gender and age
-
-    def _message(self):
-        print(self.user_string)
-    #   salary, sales, age, bmi, birthday, gender
+        if self.user_string == 'sales' or self.user_string == 'gender':
+            valid_data = self.get_data()
+            if valid_data:
+                pass
+                # valid_data.pie_chart(self.user_string)
+        else:
+            print(err.get_error_message(102))
 
     def _help(self):
         print(self.__doc__)
