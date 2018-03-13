@@ -85,7 +85,7 @@ class CalcData(object):
                     elif key == 'salary':
                         self.salary_list += [value]
                     elif key == 'birthday':
-                        month = value.split('-')[1]
+                        month = value.split('/')[1]
                         if month == '01':
                             self.count_birth_jan += 1
                         elif month == '02':
