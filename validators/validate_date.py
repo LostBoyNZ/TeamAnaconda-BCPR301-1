@@ -105,20 +105,25 @@ class ValidateDate():
     def is_valid(self, data_to_validate):
         result = False
 
-        washed_data = self.wash_data(data_to_validate)
-
-        # add zeros if needed
-        washed_data = self.add_zeros(washed_data)
-        # remove all spaces
-        washed_data = washed_data.strip()
-
-        date_format = self.determine_date_format(washed_data)
-        date_to_check = Washer.replace_x_with_y('\W+', " ", washed_data)
-        result = self.is_real_date(date_to_check, date_format)
-        if result == True:
-            date_output = Washer.replace_x_with_y(" ", "/", date_to_check)
+        # If there's no numbers in the string, just return string as is, it's bad data
+        if Validator.has_this_many_numbers(0, data_to_validate):
+            date_output = data_to_validate
         else:
-            date_output = date_to_check
+            washed_data = self.wash_data(data_to_validate)
+
+            # add zeros if needed
+            washed_data = self.add_zeros(washed_data)
+
+            # remove all spaces
+            washed_data = washed_data.strip()
+
+            date_format = self.determine_date_format(washed_data)
+            date_to_check = Washer.replace_x_with_y('\W+', " ", washed_data)
+            result = self.is_real_date(date_to_check, date_format)
+            if result == True:
+                date_output = Washer.replace_x_with_y(" ", "/", date_to_check)
+            else:
+                date_output = date_to_check
 
         return date_output, result
 
