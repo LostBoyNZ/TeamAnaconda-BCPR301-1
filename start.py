@@ -28,7 +28,13 @@ class Start:
 
         os.system('cls')
         print(self.__doc__)
-        cmd().run_commandline()
 
+        user_args = []
+        try:
+            user_args = sys.argv[1:]
+        except TypeError:
+            pass
+
+        cmd().run_commandline(user_args)
 
 i = Start()
