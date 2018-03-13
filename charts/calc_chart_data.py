@@ -1,7 +1,7 @@
 import sys
 from charts.chart_line import ChartLine
 from charts.chart_bar import ChartBar
-# from charts.chart_pie import ChartPie
+from charts.chart_pie import ChartPie
 
 try:
     from errors import ErrorHandler as err
@@ -67,13 +67,23 @@ class CalcData(object):
                             elif key == 'age':
                                 self.age_list += [value]
                             elif key == 'sales':
-                                if 0 <= int(value) >= 249:
+                                sales = int(value)
+                                if 0 <= sales <= 249:
+                                    print("g1: " + value)
+                                    print(type(value))
                                     self.count_sales_group1 += 1
-                                elif 250 <= int(value) >= 499:
+                                    print("")
+                                elif 250 <= sales <= 499:
+                                    print("g2: " + value)
+                                    print(type(value))
                                     self.count_sales_group2 += 1
-                                elif 500 <= int(value) >= 749:
+                                elif 500 <= sales <= 749:
+                                    print("g3: " + value)
+                                    print(type(value))
                                     self.count_sales_group3 += 1
-                                elif 750 <= int(value) >= 999:
+                                elif 750 <= sales <= 999:
+                                    print("g4: " + value)
+                                    print(type(value))
                                     self.count_sales_group4 += 1
                             elif key == 'bmi':
                                 if value == 'Overweight':
@@ -134,10 +144,10 @@ class CalcData(object):
             i.create_bar_chart(title, ylabel, objects, data)
 
     def pie_chart(self, choice):
-        # i = ChartPie()
+        i = ChartPie()
         if choice == 'sales':
             data = [self.count_sales_group1, self.count_sales_group2, self.count_sales_group3, self.count_sales_group4]
-            # i.create_pie_chart(data)
+            i.create_pie_chart(data, choice)
         elif choice == 'gender':
             data = [self.count_gender_f, self.count_gender_m]
-            # i.create_pie_chart(data)
+            i.create_pie_chart(data, choice)
