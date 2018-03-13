@@ -28,6 +28,8 @@ class ErrorHandler(object):  # Claye
             405: "Error - {} file is read only".format(name),
             # Database Errors ----- # Graham
             501: "Error - {} key is not valid, please try again".format(name),
+            # Chart Errors ----- # Graham
+            601: "Data in this chart type not supported"
         }
         try:
             return error_dictionary[error_code]
