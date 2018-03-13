@@ -53,15 +53,12 @@ class View(Command):
 
             i = CalcData()
 
-            try:
-
+            if file_contents:
                 if i.is_valid(file_contents):
                     i.calculate(file_contents)
                     return i
                 else:
                     print(err.get_error_message(210))
-            except:
-                print(err.get_error_message(210))
 
         except FileNotFoundError:
             print(errors.ErrorHandler.get_error_message(201))
