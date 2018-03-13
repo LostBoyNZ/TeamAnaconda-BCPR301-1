@@ -11,6 +11,8 @@ class ValidateBmi(object):
         g = to_check
         g = Wa.wash_all_but_string_characters(g)
         g = Wa.set_case(g)
+        if g == 'Obese':
+            g = 'obesity'
         if Va.is_in_list(g, list_bmi):
             result = True
         return g, result
