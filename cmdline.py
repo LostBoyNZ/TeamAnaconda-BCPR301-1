@@ -31,17 +31,24 @@ except NameError and ModuleNotFoundError and ImportError:
     pass
 
 try:
-    from commands.cmd_process import Process
-except NameError and ModuleNotFoundError and ImportError:
-    if _show_non_fatal_errors:
-        print(err.get_error_message(403, "process"))
-    pass
-
-try:
     from commands.cmd_log import Log
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
         print(err.get_error_message(403, "log"))
+    pass
+
+try:
+    from commands.cmd_read import Read
+except NameError and ModuleNotFoundError and ImportError:
+    if _show_non_fatal_errors:
+        print(err.get_error_message(403, "read"))
+    pass
+
+try:
+    from commands.cmd_process import Process
+except NameError and ModuleNotFoundError and ImportError:
+    if _show_non_fatal_errors:
+        print(err.get_error_message(403, "process"))
     pass
 
 try:
