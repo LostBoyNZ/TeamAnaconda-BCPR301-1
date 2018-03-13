@@ -28,8 +28,9 @@ class Log(Command):
     '''
     Outputs the lines of the log.txt file.
 
-    LOG [/?] [/R]
+    LOG [/?] [/R] [/A] [text]
 
+    /A  Appends text to the end of the log file
     /R	Output the log file in reverse (latest on top)
     /W  Wipes the log file after confirmation
     /?	Help about the Quit command
@@ -69,9 +70,6 @@ class Log(Command):
     def _wipe(self):
         if self.my_command_line.confirm("wipe the log"):
             lfh.wipe_file(lfh, self.FILE_NAME)
-
-    def _quiet_mode(self):
-        self._quiet_mode = True
 
     def _help(self):
         print(self.__doc__)
