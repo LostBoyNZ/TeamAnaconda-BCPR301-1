@@ -58,6 +58,7 @@ class Log(Command):
 
     def _append(self):
         lfh.append_file(self.FILE_NAME, self.user_string)
+        print("Written to log: {}".format(self.user_string))
 
     def _reverse(self):
         file_contents = lfh.load_file_data(lfh, self.FILE_NAME)
