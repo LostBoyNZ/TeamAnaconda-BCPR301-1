@@ -7,7 +7,7 @@ class ValidateGender(object):
 
     def is_valid(self, to_check):
         result = False
-        gender_list_m = ['M', 'Boy', 'Male', 'Dude']
+        gender_list_m = ['M', 'Boy', 'Male', 'Dude', 'Guy']
         gender_list_f = ['F', 'Girl', 'Female', 'Lady']
         g = to_check
         g = Wa.wash_all_but_string_characters(g)
