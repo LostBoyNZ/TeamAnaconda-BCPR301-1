@@ -17,12 +17,6 @@ except NameError and ModuleNotFoundError and ImportError:
     sys.exit()
 
 try:
-    from validators.validate_date import ValidateDate as vd
-except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "validate_date"))
-    sys.exit()
-
-try:
     from log_file_handler import LogFileHandler as lfh
 except NameError and ModuleNotFoundError and ImportError:
     print(err.get_error_message(404, "log_file_handler"))
@@ -39,7 +33,7 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class DatabaseExcel(object):  # Graham
 
-    row_names = ['empid', 'gender', 'age', 'sales', 'bmi', 'salary', 'birthday']
+    row_names = ['empid', 'gender', 'age', 'sales', 'bmi', 'salary', 'birthday', 'valid']
 
     def convert_date_format(self, excel_date):
         # excel_date = 42139
@@ -134,6 +128,7 @@ class DatabaseExcel(object):  # Graham
             data_to_process[key]['bmi'] = row_dict['bmi']
             data_to_process[key]['salary'] = row_dict['salary']
             data_to_process[key]['birthday'] = row_dict['birthday']
+            data_to_process[key]['valid'] = "0"
 
             data_row = []
             target_column = 1
@@ -141,9 +136,5 @@ class DatabaseExcel(object):  # Graham
 
         # Send the data to be processed
         dict_valid = dp.send_to_validate(data_to_process, switch, dup_keys)
-
-        # Send the data to be saved into a file
-        # i = fr()
-        # i.write_file(dict_valid)
 
         return dict_valid

@@ -1,5 +1,5 @@
 
-class ErrorDict:
+class ErrorDict:  # Claye
 
     @staticmethod
     def get_error_dict(name):
@@ -19,6 +19,7 @@ class ErrorDict:
             208: "File empty",
             209: "Database empty",
             210: "No valid data found",  # Rochelle
+            211: "Data file already processed",  # Graham
             # Validation Errors -----
             301: "Unable to validate data",
             # System File Errors ----- # Graham

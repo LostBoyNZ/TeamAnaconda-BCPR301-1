@@ -70,16 +70,12 @@ class DataProcessor(object):
         """
         >>> DataProcessor.validate_key('a001')
         'A001'
-
         >>> DataProcessor.validate_key('a123')
         'A123'
-
         >>> DataProcessor.validate_key('abc5')
         'Abc5'
-
         >>> DataProcessor.validate_key('')
         ''
-
         >>> DataProcessor.validate_key('        ')
         ''
         """
