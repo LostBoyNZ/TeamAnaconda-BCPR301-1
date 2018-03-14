@@ -20,7 +20,7 @@ class Command:
                 self._run_switch_methods(methods_to_run)
                 has_switches = True
 
-        if has_switches == False:
+        if not has_switches:
             self._default()
 
     def _run_switch_methods(self, methods_to_run):

@@ -23,7 +23,7 @@ class View(Command):
 
     VIEW /L /B /P /? [datatype]
 
-    /L	Show line chart []
+    /L    Show line chart []
     /B  Show bar chart [bmi] or [birthday]
     /P  Show pie chart [sales] or [gender]
     /?	Help about the View command
@@ -107,7 +107,6 @@ class View(Command):
 
     def _help(self):
         print(self.__doc__)
-
 
 if __name__ == "__main__":
     import doctest

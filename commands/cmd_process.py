@@ -27,7 +27,7 @@ class Process(Command):  # Claye
 
         PROCESS [/D] [separator]
 
-        -D		    Display details of data validation
+        -D    	    Display details of data validation
         separator   Allows you to specify a custom separator
 
         Supported file formats include:
@@ -37,6 +37,7 @@ class Process(Command):  # Claye
             .xls
     """
     detail_mode = ""
+
     # translates switches into the method names, e.g. /q switch would run quit
     def get_switch(self, switch):
         return {

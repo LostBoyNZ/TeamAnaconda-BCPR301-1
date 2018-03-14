@@ -1,4 +1,4 @@
-# Graham,  Claye
+# Graham, Claye
 
 import sys
 

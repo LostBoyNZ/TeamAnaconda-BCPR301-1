@@ -1,7 +1,5 @@
 # Graham
 
-_show_non_fatal_errors = True
-
 import sys
 import os
 
@@ -66,10 +64,11 @@ class Help(Command):
     HELP [command]
 
     [command]
-    	Specifies the command to display help about
+        Specifies the command to display help about
     '''
+    _show_non_fatal_errors = True
 
-    # translates switches into the method names, e.g. /q switch would run quit
+    # translates switches into method names, /q switch would run quit
     def get_switch(self, switch):
         return {
             '?': self._help
@@ -94,14 +93,15 @@ class Help(Command):
         for root, dirs, files in os.walk(path):
             for filename in files:
                 split_filename = filename.split(".", 1)
-                if split_filename[0].startswith("cmd_") and split_filename[1].endswith("py"):
+                if split_filename[0].startswith("cmd_") and\
+                        split_filename[1].endswith("py"):
                     # Hide the cmd_ from the start of the file name
                     filename = split_filename[0]
                     filename = filename[4:]
                     filename = filename.upper()
                     print(filename)
 
-        print("\nFor more information on specific commands, type HELP command-name")
+        print("\nFor information on specific commands, type HELP command-name")
 
     @staticmethod
     def _get_help_from_class(class_to_call):
