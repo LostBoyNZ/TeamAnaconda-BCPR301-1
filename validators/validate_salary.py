@@ -38,6 +38,12 @@ class ValidateSalary(object):
                         result = Va.is_within_length(self.min_length, self.max_length, str(salary))
             else:
                 result = False
+
+            try:
+                salary = int(salary)
+            except ValueError:
+                result = False
+
             return salary, result
         except ValueError:
             result = False

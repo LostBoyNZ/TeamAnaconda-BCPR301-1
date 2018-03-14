@@ -6,8 +6,8 @@ import sys
 try:
     from validators.validator import Validator
 except NameError and ModuleNotFoundError and ImportError:
-     print("Fatal Error - validator.py not found.")
-     sys.exit()
+    print("Fatal Error - validator.py not found.")
+    sys.exit()
 
 try:
     from washers.washer import Washer
@@ -110,9 +110,9 @@ class ValidateDate():   # Graham
 
     def wash_data(self, data_to_wash):
         # replace any non-word character with a forward slash
-        data_to_wash =  Washer.replace_x_with_y("\W+", "/", data_to_wash)
+        data_to_wash = Washer.replace_x_with_y("\W+", "/", data_to_wash)
         # remove st, nd and rd from date, e.g. 21st, 22nd, 23rd
-        data_to_wash =  Washer.replace_x_with_y("st|nd|rd", "", data_to_wash)
+        data_to_wash = Washer.replace_x_with_y("st|nd|rd", "", data_to_wash)
         data_to_wash = self.month_string_to_number(data_to_wash)
 
         return data_to_wash
@@ -122,7 +122,7 @@ class ValidateDate():   # Graham
 
         data_to_validate = data_to_validate.lstrip(' ')
 
-        # If there's no numbers in the string, just return string as is, it's bad data
+        # If there's no numbers in string, just return as is, it's bad data
         if Validator.has_this_many_numbers(0, data_to_validate):
             date_output = data_to_validate
         else:
