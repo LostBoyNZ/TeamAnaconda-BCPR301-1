@@ -7,6 +7,9 @@ import os.path
 
 class FileReader(object):  # Claye
 
+    def __init__(self):
+        self.db = CompanyDatabase
+
     def call_file(self, switch):
         y = input("Please enter the filename to read data from >>> ")
         try:
@@ -92,7 +95,7 @@ class FileReader(object):  # Claye
             print(errors.ErrorHandler.get_error_message(103))
 
     # Rochelle
-    def write_to_database(dict_valid):
+    def write_to_database(self, dict_valid):
 
         db = CompanyDatabase()
         db.create_connection()
@@ -124,5 +127,9 @@ class FileReader(object):  # Claye
                 db.insert_staff([(db_id, db_g, db_a, db_sale, db_bm, db_sala, db_bi, db_v)])
 
         print(count, "persons added! Congratulations!")
+        view_db = input("Do you want to see data saved to database? Y/N >>> ")  # Rochelle
+        if view_db.upper() == "Y":
+            db.get_staff()
+
         db.close()
-        # if doesn't work need error handling
+
