@@ -1,7 +1,6 @@
 # Graham
 
 import sys
-import pickle
 
 try:
     from errors import ErrorHandler as err
@@ -43,8 +42,10 @@ class Pickler(Command):
     /P  Pickle data
     /U  Unpickle data
     /?  Help
-    '''
 
+    [data]
+    	Specifies either [log] or [errors] as the data to use
+    '''
     pickled_log = []
     pickled_errors = []
 
@@ -78,18 +79,27 @@ class Pickler(Command):
     def _pickle_log(self):
         data_to_pickle = lfh.get_log(lfh, "log.txt")
         pickled_data = pkl.pickle_data(data_to_pickle)
-        self.pickled_log.insert(pickled_data)
+        self.pickled_log.append(pickled_data)
 
     def _unpickle_log(self):
-        unpickled_data = pkl.unpickle_data(self.pickled_log[0])
+        unpickled_data = ""
+
+        try:
+            unpickled_data = pkl.unpickle_data(self.pickled_log[0])
+        except IndexError:
+            print(err.get_error_message(208))
         return unpickled_data
 
     def _pickle_errors(self):
         pickled_data = err.send_data_to_pickler()
-        self.pickled_errors.insert(pickled_data)
+        self.pickled_errors.append(pickled_data)
 
     def _unpickle_errors(self):
-        unpickled_data = pkl.unpickle_data(self.pickled_errors[0])
-        print(unpickled_data)
+        unpickled_data = ""
+
+        try:
+            unpickled_data = pkl.unpickle_data(self.pickled_errors[0])
+        except IndexError:
+            print(err.get_error_message(208))
+
         return unpickled_data
-    
