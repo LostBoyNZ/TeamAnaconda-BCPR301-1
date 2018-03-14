@@ -4,7 +4,7 @@ from pickle import Unpickler
 from io import BytesIO
 
 
-class Pickle(object):
+class Pickler(object):
 
     @staticmethod
     def pickle_data(data):
