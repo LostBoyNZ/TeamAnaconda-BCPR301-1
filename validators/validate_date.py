@@ -1,6 +1,6 @@
 # Graham
 
-import datetime
+from datetime import datetime
 import sys
 
 try:
@@ -45,7 +45,7 @@ class ValidateDate():
         result = False
 
         try:
-            datetime.datetime.strptime(data, date_format)
+            datetime.strptime(data, date_format)
             result = True
         except ValueError:
             result = False
@@ -73,13 +73,15 @@ class ValidateDate():
         split_date = self.split_string("/", date_to_check)
         for value in split_date:
             if value.isalpha():
-                print("Is alpha")
+                print(value)
                 if len(value) > 3:
                     # result = "%B"
-                    split_date[value] = datetime.strptime(value, '%B').month
+                    text_month = datetime.strptime(value, '%B')
+                    split_date[1] = text_month.strftime('%m')
                 else:
                     # result = "%b"
-                    split_date[value] = datetime.strptime(value, '%b').month
+                    text_month = datetime.strptime(value, '%b')
+                    split_date[1] = text_month.strftime('%m')
 
         return split_date[0] + "/" + split_date[1] + "/" + split_date[2]
 
@@ -93,17 +95,21 @@ class ValidateDate():
 
         return format
 
-    @staticmethod
-    def wash_data(data_to_wash):
+    def wash_data(self, data_to_wash):
         # replace any non-word character with a forward slash
         data_to_wash =  Washer.replace_x_with_y("\W+", "/", data_to_wash)
         # remove st, nd and rd from date, e.g. 21st, 22nd, 23rd
         data_to_wash =  Washer.replace_x_with_y("st|nd|rd", "", data_to_wash)
 
+        output = self.month_string_to_number(data_to_wash)
+        print(output)
+
         return data_to_wash
 
     def is_valid(self, data_to_validate):
         result = False
+
+        data_to_validate = data_to_validate.lstrip(' ')
 
         # If there's no numbers in the string, just return string as is, it's bad data
         if Validator.has_this_many_numbers(0, data_to_validate):
@@ -124,12 +130,5 @@ class ValidateDate():
                 date_output = Washer.replace_x_with_y(" ", "/", date_to_check)
             else:
                 date_output = date_to_check
-
+        print(date_output)
         return date_output, result
-
-#
-# Add some asserts like...
-#
-# if not condition:
-#    raise AssertionError()
-#
