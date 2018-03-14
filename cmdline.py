@@ -68,9 +68,9 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class CommandLine:
 
-    prompt = ""
+    prompt = ""  # Rochelle
     user_name = ""
-    debug_mode = True
+    debug_mode = False
 
     def __init__(self):
         self.prompt = "> "
@@ -85,14 +85,15 @@ class CommandLine:
             self._get_command()
 
     def _handle_args(self, user_args):
-        if len(user_args) > 0:
+        if len(user_args) > 0:  # Graham
             self.user_name = user_args[0]
         if len(user_args) > 1:
-            self.user_name = user_args[1]
+            if user_args[1].upper() == '/D':  # Claye
+                self.debug_mode = True  # Claye
         if len(user_args) > 2:
-            self.user_name = user_args[2]
+            self.prompt = user_args[2]  # Rochelle
 
-    def _greet_user(self):
+    def _greet_user(self):  # Graham
         cv.show_output("Welcome " + self.user_name)
 
     def _get_command(self):
