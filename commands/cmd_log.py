@@ -58,7 +58,7 @@ class Log(Command):
         if len(file_contents) == 0:
             print(err.get_error_message(208))
 
-        lfh.output_file(lfh, file_contents, direction)
+        lfh.output_file(file_contents, direction)
 
     def _append(self):
         lfh.append_file(self.FILE_NAME, self.user_string)
@@ -68,7 +68,7 @@ class Log(Command):
         file_contents = lfh.load_file_data(lfh, self.FILE_NAME)
         direction = "r"
 
-        lfh.output_file(lfh, file_contents, direction)
+        lfh.output_file(file_contents, direction)
 
     def _wipe(self):
         if self.my_command_line.confirm("wipe the log"):

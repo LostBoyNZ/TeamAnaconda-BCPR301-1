@@ -60,7 +60,8 @@ class Read(Command):
 
         return output
 
-    def _check_file_name(self, file_name):
+    @staticmethod
+    def _check_file_name(file_name):
         output = ""
 
         split_filename = file_name.split(".")
@@ -81,6 +82,6 @@ class Read(Command):
             except OSError:
                 print(err.get_error_message(102))
 
-            lfh.output_file(lfh, file_contents, direction)
+            lfh.output_file(file_contents, direction)
         else:
             print(err.get_error_message(204))
