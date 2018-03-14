@@ -1,7 +1,7 @@
 import unittest
-import anaconda.validate_gender as va
-import anaconda.validate_bmi as bm
-
+from validators.validate_gender import ValidateGender as va
+from validators.validate_bmi import ValidateBmi as bm
+from data_processor import DataProcessor as dp
 
 class MainTests(unittest.TestCase):
     def setUp(self):
@@ -15,88 +15,90 @@ class MainTests(unittest.TestCase):
     # MALE GENDER   V V V V V V V
 
     def test_gender_male(self):
-        i = va.ValidateGender('male')
-        i = i.is_valid()
-        self.assertTrue(i == "M", "the value of test should be M")
+        i = va.is_valid('male')
+        self.assertTrue(i == ('M', True), "the value of test should be M")
 
     def test_gender_m(self):
-        i = va.ValidateGender('m')
-        i = i.is_valid()
-        self.assertTrue(i == "M", "the value of test should be M")
+        i = va.is_valid('m')
+        self.assertTrue(i == ('M', True), "the value of test should be M")
 
     def test_gender_boy(self):
-        i = va.ValidateGender('boy')
-        i = i.is_valid()
-        self.assertTrue(i == "M", "the value of test should be M")
+        i = va.is_valid('boy')
+        self.assertTrue(i == ('M', True), "the value of test should be M")
 
     def test_gender_dude(self):
-        i = va.ValidateGender('dude')
-        i = i.is_valid()
-        self.assertTrue(i == "M", "the value of test should be M")
+        i = va.is_valid('dude')
+        self.assertTrue(i == ('M', True), "the value of test should be M")
 
     # FEMALE GENDER      V V V V V
 
     def test_gender_female(self):
-        i = va.ValidateGender('female')
-        i = i.is_valid()
-        self.assertTrue(i == "F", "the value of test should be F")
+        i = va.is_valid('female')
+        self.assertTrue(i == ('F', True), "the value of test should be F")
 
     def test_gender_f(self):
-        i = va.ValidateGender('f')
-        i = i.is_valid()
-        self.assertTrue(i == "F", "the value of test should be F")
+        i = va.is_valid('f')
+        self.assertTrue(i == ('F', True), "the value of test should be F")
 
     def test_gender_lady(self):
-        i = va.ValidateGender('lady')
-        i = i.is_valid()
-        self.assertTrue(i == "F", "the value of test should be F")
+        i = va.is_valid('lady')
+        self.assertTrue(i == ('F', True), "the value of test should be F")
 
     def test_gender_girl(self):
-        i = va.ValidateGender('girl')
-        i = i.is_valid()
-        self.assertTrue(i == "F", "the value of test should be F")
+        i = va.is_valid('girl')
+        self.assertTrue(i == ('F', True), "the value of test should be F")
 
     #  Gender with special characters (spaces, numbers and symbols) V V V V V
 
     def test_gender_male_with_special_characters(self):
-        i = va.ValidateGender(' 23123 #$@#$ ma $#@$ le 9876@# ')
-        i = i.is_valid()
-        self.assertTrue(i == "M", "the value of test should be M")
+        i = va.is_valid(' 23123 #$@#$ ma $#@$ le 9876@# ')
+        self.assertTrue(i == ('M', True), "the value of test should be M")
 
     def test_gender_female_with_special_characters(self):
-        i = va.ValidateGender(' $@#$ fe #$# ma @#@$ 454 le 3435')
-        i = i.is_valid()
-        self.assertTrue(i == "F", "the value of test should be F")
+        i = va.is_valid(' $@#$ fe #$# ma @#@$ 454 le 3435')
+        self.assertTrue(i == ('F', True), "the value of test should be F")
 
     # BMI TEST CASES
 
     def test_bmi_obesity(self):
-        i = bm.ValidateBmi('obesity')
-        i = i.is_valid()
-        self.assertTrue(i == "Obesity", "the value of test should be Obesity")
+        i = bm.is_valid('obesity')
+        self.assertTrue(i == ("Obesity", True), "the value of test should be Obesity")
 
     def test_bmi_normal(self):
-        i = bm.ValidateBmi('normal')
-        i = i.is_valid()
-        self.assertTrue(i == "Normal", "the value of test should be Normal")
+        i = bm.is_valid('normal')
+        self.assertTrue(i == ("Normal", True), "the value of test should be Normal")
 
     def test_bmi_overweight(self):
-        i = bm.ValidateBmi('over weight ')
-        i = i.is_valid()
-        self.assertTrue(i == "Overweight", "the value of test should be Overweight")
+        i = bm.is_valid('over weight ')
+        self.assertTrue(i == ("Overweight", True), "the value of test should be Overweight")
 
     def test_bmi_underweight(self):
-        i = bm.ValidateBmi('underweight')
-        i = i.is_valid()
-        self.assertTrue(i == "Underweight", "the value of test should be underweight")
+        i = bm.is_valid('underweight')
+        self.assertTrue(i == ("Underweight", True), "the value of test should be underweight")
+
+    def test_bmi_obese_converts_to_obesity(self):
+        i = bm.is_valid('obese')
+        self.assertTrue(i == ("Obesity", True), "the value of test should be Obesity")
 
     # BMI WITH SPECIAL CHARACTERS
 
     def test_bmi_with_special_characters(self):
-        i = bm.ValidateBmi('4234un    derwei#$#$ght     ')
-        i = i.is_valid()
-        self.assertTrue(i == "Underweight", "the value of test should be underweight")
+        i = bm.is_valid('4234un    derwei#$#$ght     ')
+        self.assertTrue(i == ("Underweight", True), "the value of test should be underweight")
 
+    # Data Processor Key Value (EMPID) Tests
+
+    def test_empid_valid(self):
+        i = dp.validate_key('a001')
+        self.assertTrue(i == 'A001', "the value of test should be A001")
+
+    def test_empid_valid_with_three_letters(self):
+        i = dp.validate_key('abc8')
+        self.assertTrue(i == 'Abc8', "the value of test should be Abc8")
+
+    def test_empid_Invalid_with_two_characters(self):
+        i = dp.validate_key('a1')
+        self.assertTrue(i == 'A1', "the value of test should be A1")
 
 if __name__ == '__main__':
     # unittest.main(verbosity=2)  # with more details
