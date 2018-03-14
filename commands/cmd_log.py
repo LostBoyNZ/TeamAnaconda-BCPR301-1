@@ -21,9 +21,9 @@ except NameError and ModuleNotFoundError and ImportError:
     sys.exit()
 
 try:
-    from pickler_sqllite import Pickle as pkl
+    from databases.pickler import Pickler as pkl
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "pickler_sqllite"))
+    print(err.get_error_message(404, "pickler"))
     sys.exit()
 
 
