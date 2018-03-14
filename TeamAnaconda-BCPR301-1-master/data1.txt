@@ -1,0 +1,2 @@
+
+A001,gender M,age 52,sales 123,bmi Overweight,salary 50,birthday 23/10/1998,valid 1,
