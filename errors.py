@@ -1,5 +1,5 @@
 from error_dict import ErrorDict
-from databases.pickler import Pickle
+from databases.pickler_sqlite import Pickle
 
 
 class ErrorHandler(object):  # Claye
@@ -18,8 +18,4 @@ class ErrorHandler(object):  # Claye
     def send_data_to_pickler():
         to_pickle = ErrorDict.get_error_dict('')
         pickled = Pickle.pickle_list(to_pickle)
-        print(to_pickle)
-        print(pickled)
-        un_pickled = Pickle.unpickle_data(pickled)
-        print(un_pickled)
-
+        return pickled
