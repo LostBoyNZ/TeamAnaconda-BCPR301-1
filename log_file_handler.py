@@ -10,9 +10,9 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class LogFileHandler(object):
 
-    def open_file(self, file_name, mode):
+    # set to read a file by default
+    def open_file(self, file_name, mode='r'):
         file = ""
-
         try:
             file = open(file_name, mode)
         except FileNotFoundError:
@@ -37,7 +37,7 @@ class LogFileHandler(object):
         file_contents = []
 
         try:
-            with self.open_file(file_name, "r") as file:
+            with self.open_file(self, file_name, "r") as file:
                 for line in file:
                     a_line = line.rstrip()
                     file_contents.append(a_line)
@@ -68,7 +68,7 @@ class LogFileHandler(object):
 
     def wipe_file(self, file_name):
         try:
-            file = self.open_file(file_name, "r+")
+            file = self.open_file(self, file_name, "r+")
             file.truncate()
             self.close_file(file)
         except PermissionError:
@@ -80,7 +80,7 @@ class LogFileHandler(object):
             print("Log file not wiped")
 
     def _create_file(self, file_name):
-        file = self.open_file(file_name, "w+")
+        file = self.open_file(self, file_name, "w+")
         self.close_file(file)
 
     def output_file(self, file_contents, direction):
