@@ -45,10 +45,10 @@ except NameError and ModuleNotFoundError and ImportError:
     pass
 
 try:
-    from commands.cmd_pickle import Pickle
+    from commands.cmd_pickler import Pickler
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "cmd_pickle"))
+        print(err.get_error_message(403, "cmd_pickler"))
     pass
 
 try:
@@ -70,12 +70,12 @@ class CommandLine:
 
     prompt = ""
     user_name = ""
-    debug_mode = False
+    debug_mode = True
 
     def __init__(self):
         self.prompt = "> "
         if self.debug_mode:
-            self.prompt = "debug> "
+            self.prompt = "debug > "
 
     def run_commandline(self, user_args):
         self._handle_args(user_args)
