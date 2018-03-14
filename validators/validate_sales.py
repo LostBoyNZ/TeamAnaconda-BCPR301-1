@@ -3,7 +3,6 @@ from validators.validator import Validator as Va
 from washers.washer import Washer as Wa
 
 class ValidateSales(object):
-# write comments to explain!!!!!!!!!!!
     def __init__(self):
         self.min_sales = 0
         self.min_length = 3
@@ -14,16 +13,12 @@ class ValidateSales(object):
         >>> i = ValidateSales()
         >>> i.is_valid("780")
         ('780', True)
-
         >>> i.is_valid(7800)
         ('7800', False)
-
         >>> i.is_valid('  RFGVHJ#$%^&*  67       @#$%^&*(DFGHJ')
         ('067', True)
-
         >>> i.is_valid(' twenty-two ')
         (' twenty-two ', False)
-
         :param sales:
         :return:
         """

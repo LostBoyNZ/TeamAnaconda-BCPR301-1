@@ -9,19 +9,14 @@ class ValidateBmi(object):
         """
         >>> ValidateBmi.is_valid('Obese')
         ('Obesity', True)
-
         >>> ValidateBmi.is_valid('norm3123123#@$@#$#@4al')
         ('Normal', True)
-
         >>> ValidateBmi.is_valid('person')
         ('Person', False)
-
         >>> ValidateBmi.is_valid('Normal')
         ('Normal', True)
-
         >>> ValidateBmi.is_valid('')
         ('INVALID', False)
-
         >>> ValidateBmi.is_valid('           ')
         ('INVALID', False)
         """

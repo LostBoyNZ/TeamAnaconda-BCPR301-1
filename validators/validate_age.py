@@ -15,16 +15,12 @@ class ValidateAge(object):
         >>> i = ValidateAge()
         >>> i.is_valid("78")
         ('78', True)
-
         >>> i.is_valid(780)
         ('780', False)
-
         >>> i.is_valid('  RFGVHJ#$%^&*  67       @#$%^&*(DFGHJ')
         ('67', True)
-
         >>> i.is_valid(' twenty ')
         (' twenty ', False)
-
         :param age:
         :return:
         """

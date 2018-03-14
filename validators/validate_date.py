@@ -18,7 +18,12 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class ValidateDate():   # Graham
 
-    def split_string(self, delimiter, data):
+    @staticmethod
+    def split_string(delimiter, data):
+        """
+        >>> ValidateDate.split_string('/', '1/1/1998')
+        ['1', '1', '1998']
+        """
         return data.split(delimiter)
 
     def add_zeros(self, data):
@@ -39,7 +44,14 @@ class ValidateDate():   # Graham
 
         return output
 
-    def is_real_date(self, data, date_format):
+    @staticmethod
+    def is_real_date(data, date_format):
+        """
+        >>> ValidateDate.is_real_date('01/01/1998', '%d/%m/%Y')
+        True
+        >>> ValidateDate.is_real_date('32/01/1998', '%d/%m/%Y')
+        False
+        """
         result = False
 
         try:
@@ -129,3 +141,8 @@ class ValidateDate():   # Graham
             date_output = Washer.replace_x_with_y(" ", "/", date_to_check)
 
         return date_output, result
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(verbose=True)

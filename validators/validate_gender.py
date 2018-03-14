@@ -10,19 +10,14 @@ class ValidateGender(object):
         """
         >>> ValidateGender.is_valid('male')
         ('M', True)
-
         >>> ValidateGender.is_valid('female')
         ('F', True)
-
         >>> ValidateGender.is_valid('person')
         ('Person', False)
-
         >>> ValidateGender.is_valid('Gi344#@$@#$rl')
         ('F', True)
-
         >>> ValidateGender.is_valid('')
         ('INVALID', False)
-
         >>> ValidateGender.is_valid('   789   ')
         ('INVALID', False)
         """

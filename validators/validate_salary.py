@@ -5,7 +5,6 @@ from washers.washer import Washer as Wa
 
 
 class ValidateSalary(object):
-    # write comments to explain!!!!!!!!!!!
     def __init__(self):
         self.min_salary = 0
         self.min_length = 2
@@ -16,16 +15,12 @@ class ValidateSalary(object):
         >>> i = ValidateSalary()
         >>> i.is_valid("gfdjhs804")
         ('804', True)
-
         >>> i.is_valid(1000)
         ('1000', False)
-
         >>> i.is_valid('  RFGVHJ#$%^&*  6       @#$%^&*(DFGHJ')
         ('06', True)
-
         >>> i.is_valid(' twenty-two ')
         (' twenty-two ', False)
-
         :param salary:
         :return:
         """
