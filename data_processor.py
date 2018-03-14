@@ -76,6 +76,12 @@ class DataProcessor(object):
 
         >>> DataProcessor.validate_key('abc5')
         'Abc5'
+
+        >>> DataProcessor.validate_key('')
+        ''
+
+        >>> DataProcessor.validate_key('        ')
+        ''
         """
         result = ve.is_valid(key_to_validate)
         return result[0]
