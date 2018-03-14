@@ -19,6 +19,12 @@ class ValidateGender(object):
 
         >>> ValidateGender.is_valid('Gi344#@$@#$rl')
         ('F', True)
+
+        >>> ValidateGender.is_valid('')
+        ('INVALID', False)
+
+        >>> ValidateGender.is_valid('   789   ')
+        ('INVALID', False)
         """
 
         result = False
@@ -27,7 +33,9 @@ class ValidateGender(object):
         g = to_check
         g = Wa.wash_all_but_string_characters(g)
         g = Wa.set_case(g)
-        if Va.is_in_list(g, gender_list_m):
+        if g == '':
+            g = "INVALID"
+        elif Va.is_in_list(g, gender_list_m):
             g = 'M'
             result = True
         elif Va.is_in_list(g, gender_list_f):
