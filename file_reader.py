@@ -49,7 +49,8 @@ class FileReader(object):  # Claye
         else:
             print(errors.ErrorHandler.get_error_message(204))
 
-    def split_file(self, file_name, switch, separator=","): # Claye, Works with CSV and TXT docs
+    # Claye, Works with CSV and TXT docs
+    def split_file(self, file_name, switch, separator=","):
         dict_root = {}
         try:
             file = open(file_name, "r")
@@ -62,7 +63,7 @@ class FileReader(object):  # Claye
             keep_going = True
 
             for line in file:
-                # Split the file into different fields using "," to split fields
+                # Split file into fields using ","
                 fields = line.split(separator)
                 checked_id = DataProcessor.validate_key(fields[0])
                 if checked_id in dict_root:
@@ -72,26 +73,34 @@ class FileReader(object):  # Claye
                     LogFileHandler.append_file('log.txt', data_to_log)
                 else:
                     try:
-                        dict_root.update({checked_id: {'gender': fields[1], 'age': fields[2], 'sales': fields[3], 'bmi': fields[4], 'salary': fields[5], 'birthday': fields[6].rstrip(), 'valid': '0'}})
+                        dict_root.update({checked_id: {'gender': fields[1],
+                                                       'age': fields[2],
+                                                       'sales': fields[3],
+                                                       'bmi': fields[4],
+                                                       'salary': fields[5],
+                                                       'birthday': fields[6].rstrip(),
+                                                       'valid': '0'}})
                     except IndexError:
                         print(errors.ErrorHandler.get_error_message(211))
                         keep_going = False
             # Close the file to free up resources (good practice)
             file.close()
             if keep_going:
-                valid_dict = DataProcessor.send_to_validate(dict_root, switch, dup_keys)
+                valid_dict = DataProcessor.send_to_validate(dict_root,
+                                                            switch, dup_keys)
                 self.write_file(valid_dict)
 
-    def write_file(self, dict_valid):   # Claye
+    def write_file(self, dict_valid):  # Claye
         u = input("Are you sure you want to save data? Y/N >>> ")
         if u.upper() == "Y":
-            db = input("Do you want to save to a database ot file? D/F >>> ")  # Rochelle
+            # Rochelle
+            db = input("Do you want to save to a database ot file? D/F >>> ")
             if db.upper() == "D":  # Rochelle
                 self.write_to_database(dict_valid)  # Rochelle
             elif db.upper() == "F":
-                file_target = input("Please input the filename to save to >>> ")
+                file_target = input("Please input filename to save to >>> ")
                 if self.check_path_exists(file_target):
-                    u2 = input("File exists, do you want to append the data Y/N >>> ")
+                    u2 = input("File exists, do you want to append Y/N >>> ")
                     if u2.upper() == 'Y':
                         self.commit_save(dict_valid, file_target)
                     if u2.upper() == 'N':
@@ -107,7 +116,7 @@ class FileReader(object):  # Claye
             print(errors.ErrorHandler.get_error_message(102))
             self.write_file(dict_valid)
 
-    def save_pickle_file(self, data_to_write): # Claye, Graham
+    def save_pickle_file(self, data_to_write):  # Claye, Graham
         u = input("Are you sure you want to save data? Y/N >>> ")
         if u.upper() == "Y":
             file_target = input("Please input the filename to save to >>> ")
@@ -132,13 +141,13 @@ class FileReader(object):  # Claye
         return lines
 
     @staticmethod
-    def commit_pickle_save(file_target, data_to_write): # Claye, Graham
+    def commit_pickle_save(file_target, data_to_write):  # Claye, Graham
         file = open(file_target, "wb")
         data_to_write = str(data_to_write)
         file.write(data_to_write + "\n")
         file.close()
 
-    def commit_save(self, dict_valid, file_target): # Claye
+    def commit_save(self, dict_valid, file_target):  # Claye
         try:
             z = open(file_target, "a")
             for key in dict_valid:
@@ -153,7 +162,6 @@ class FileReader(object):  # Claye
         except OSError:
             print(errors.ErrorHandler.get_error_message(103))
             self.write_file(dict_valid)
-
 
     @staticmethod
     def check_path_exists(path):  # Claye
@@ -197,14 +205,13 @@ class FileReader(object):  # Claye
                 if item['birthday']:
                     db_bi = item['birthday'] + ","
 
-                db.insert_staff([(db_id, db_g, db_a, db_sale, db_bm, db_sala, db_bi, db_v)])
+                db.insert_staff([(db_id, db_g, db_a, db_sale, db_bm,
+                                  db_sala, db_bi, db_v)])
 
         print(count, "persons added! Congratulations!")
-        view_db = input("Do you want to see data saved to database? Y/N >>> ")  # Rochelle
+        # Rochelle
+        view_db = input("Do you want to see data saved to database? Y/N >>> ")
         if view_db.upper() == "Y":
             db.get_staff()
 
         db.close()
-
-# i = FileReader()
-# i.save_pickle_file("aaa")

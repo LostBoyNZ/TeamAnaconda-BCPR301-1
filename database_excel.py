@@ -33,11 +33,13 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class DatabaseExcel(object):  # Graham
 
-    row_names = ['empid', 'gender', 'age', 'sales', 'bmi', 'salary', 'birthday', 'valid']
+    row_names = ['empid', 'gender', 'age', 'sales',
+                 'bmi', 'salary', 'birthday', 'valid']
 
     def convert_date_format(self, excel_date):
         # excel_date = 42139
-        dt = datetime.fromordinal(datetime(1900, 1, 1).toordinal() + excel_date - 2)
+        dt = datetime.fromordinal(datetime(1900, 1, 1)
+                                  .toordinal() + excel_date - 2)
         output = dt.strftime("%d/%m/%Y")
 
         return output
@@ -53,7 +55,7 @@ class DatabaseExcel(object):  # Graham
                 print(sheet)
 
             while True:
-                sheet_name = input("\nPlease enter the sheet to read data from >>> ")
+                sheet_name = input("\nEnter the sheet to read >>> ")
                 try:
                     sheet = wb.get_sheet_by_name(sheet_name)
                     break

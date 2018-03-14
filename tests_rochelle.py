@@ -662,8 +662,6 @@ class Tests_Rochelle(unittest.TestCase):
         else:
             print("{} Passed".format(test_name))
 
-
-
 if __name__ == '__main__':
     # unittest.main(verbosity=2)  # with more details
     unittest.main()

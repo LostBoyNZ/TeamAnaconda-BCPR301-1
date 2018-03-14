@@ -27,9 +27,12 @@ class Tests_Graham(unittest.TestCase):
         pass
 
     # Graham
-    def run_test(self, expected_result, test_name, class_to_test, data_to_test):
+    def run_test(self, expected_result, test_name,
+                 class_to_test, data_to_test):
 
-        if expected_result == None or test_name == None or class_to_test == None or data_to_test == None:
+        if expected_result is None or test_name is None:
+            print("Run test didn't receive all variables")
+        elif class_to_test is None or data_to_test is None:
             print("Run test didn't receive all variables")
         else:
             # Action
@@ -37,9 +40,11 @@ class Tests_Graham(unittest.TestCase):
 
             # Assert
             try:
-                self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+                self.assertTrue(result[0] == expected_result[0] and
+                                result[1] == expected_result[1])
             except AssertionError:
-                print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+                print("{} Failed - Should be {}, but was {}.".format
+                      (test_name, expected_result, result))
             else:
                 print("{} Passed".format(test_name))
 

@@ -3,6 +3,7 @@ from validators.validate_gender import ValidateGender as va
 from validators.validate_bmi import ValidateBmi as bm
 from data_processor import DataProcessor as dp
 
+
 class MainTests(unittest.TestCase):
     def setUp(self):
         # be executed before each test

@@ -47,6 +47,7 @@ class DataProcessor(object):
                     i = vs()
                     result = i.is_valid(dict_root[k][kv])
                     if result[1]:
+                        dict_root[k][kv] = str(result[0])
                         valid += 1
                 if kv == 'sales':
                     i = vsa()

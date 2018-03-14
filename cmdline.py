@@ -1,7 +1,5 @@
 # Graham
 
-_show_non_fatal_errors = True
-
 import sys
 
 try:
@@ -68,6 +66,7 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class CommandLine:
 
+    _show_non_fatal_errors = True
     prompt = ""  # Rochelle
     user_name = ""
     debug_mode = False
@@ -108,7 +107,7 @@ class CommandLine:
         # capitalize the command as that's a class name to call
         class_to_call = split_input[0].title()
 
-        # if there's any more to the string, that's switches and user data, e.g. a file name
+        # if there's any more, that's switches and user data, e.g. a file name
         if len(split_input) > 1:
             switches_and_data = split_input[1].lower()
 
@@ -116,13 +115,13 @@ class CommandLine:
 
     def _process_command(self, class_to_call, switches_and_data):
         if class_to_call:
-            if self.debug_mode == False:
+            if self.debug_mode is False:
                 try:
                     class_name = getattr(sys.modules[__name__], class_to_call)
                     class_name(switches_and_data, self)
                 except AttributeError:
-                    cv.show_output(
-                    "The command '{}' is not valid. Please enter 'Help' for a list of commands.".format(class_to_call))
+                    cv.show_output("The command '{}' is not valid. Enter 'Help' for a list of commands"""
+                                   .format(class_to_call))
             else:
                 class_name = getattr(sys.modules[__name__], class_to_call)
                 class_name(switches_and_data, self)
