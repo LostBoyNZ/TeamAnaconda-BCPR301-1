@@ -1,5 +1,5 @@
 from error_dict import ErrorDict
-from databases.pickler_sqlite import Pickle
+from databases.pickler import Pickler
 
 
 class ErrorHandler(object):  # Claye
@@ -17,5 +17,5 @@ class ErrorHandler(object):  # Claye
     @staticmethod
     def send_data_to_pickler():
         to_pickle = ErrorDict.get_error_dict('')
-        pickled = Pickle.pickle_list(to_pickle)
+        pickled = Pickler.pickle_list(to_pickle)
         return pickled
