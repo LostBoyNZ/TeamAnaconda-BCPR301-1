@@ -1,21 +1,49 @@
 import errors
 from data_processor import DataProcessor
 from log_file_handler import LogFileHandler
+from openpyxl import load_workbook
 import os.path
+import sys
+
+# from database_excel import DatabaseExcel as dbexcel
+
+try:
+    from database_excel import DatabaseExcel as dbexel
+except NameError and ModuleNotFoundError and ImportError:
+    print(errors.get_error_message(404, "database_excel"))
+    sys.exit()
 
 
 class FileReader(object):  # Claye
 
     def call_file(self, switch):
-        y = input("Please enter the filename to read data from >>> ")
-        try:
-            self.split_file(y, switch)
-        except FileNotFoundError:
-            print(errors.ErrorHandler.get_error_message(201))
-            self.call_file(switch)
-        except OSError:
-            print(errors.ErrorHandler.get_error_message(103))
-            self.call_file(switch)
+        file_name = input("Please enter the filename to read data from >>> ")
+        split_filename = file_name.split(".")
+        file_extension = split_filename[-1]
+        if file_extension == "xls" or file_extension == "xlsx":
+            try:
+                wb = load_workbook(file_name)
+            except FileNotFoundError:
+                print(errors.get_error_message(201))
+                self.call_file(switch)
+            except OSError:
+                print(errors.get_error_message(103))
+                self.call_file(switch)
+
+            i = dbexel()
+            data_to_save = i.create_connection(wb, switch)
+            self.write_file(data_to_save)
+        elif file_extension == "txt" or file_extension == "csv":
+            try:
+                self.split_file(file_name, switch)
+            except FileNotFoundError:
+                print(errors.ErrorHandler.get_error_message(201))
+                self.call_file(switch)
+            except OSError:
+                print(errors.ErrorHandler.get_error_message(103))
+                self.call_file(switch)
+        else:
+            print(errors.ErrorHandler.get_error_message(204))
 
     def split_file(self, file_name, switch): # Claye, Works with CSV and TXT docs
         dict_root = {}
