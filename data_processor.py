@@ -7,7 +7,6 @@ from validators.validate_salary import ValidateSalary as vs
 from validators.validate_sales import ValidateSales as vsa
 
 
-
 class DataProcessor(object):
 
     @staticmethod
@@ -68,6 +67,20 @@ class DataProcessor(object):
 
     @staticmethod
     def validate_key(key_to_validate):
+        """
+        >>> DataProcessor.validate_key('a001')
+        'A001'
+
+        >>> DataProcessor.validate_key('a123')
+        'A123'
+
+        >>> DataProcessor.validate_key('abc5')
+        'Abc5'
+        """
         result = ve.is_valid(key_to_validate)
         return result[0]
 
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(verbose=True)
