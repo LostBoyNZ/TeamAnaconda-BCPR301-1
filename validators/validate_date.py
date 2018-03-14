@@ -4,21 +4,19 @@ from datetime import datetime
 import sys
 
 try:
-    #from validators.validator import Validator, is_correct_pattern, is_within_length, has_this_many_numbers, has_this_many_letters
     from validators.validator import Validator
 except NameError and ModuleNotFoundError and ImportError:
      print("Fatal Error - validator.py not found.")
      sys.exit()
 
 try:
-    #from washer import Washer, replace_x_with_y, valid_date
     from washers.washer import Washer
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - washer.py not found.")
     sys.exit()
 
 
-class ValidateDate():
+class ValidateDate():   # Graham
 
     def split_string(self, delimiter, data):
         return data.split(delimiter)
@@ -73,7 +71,6 @@ class ValidateDate():
         split_date = self.split_string("/", date_to_check)
         for value in split_date:
             if value.isalpha():
-                print(value)
                 if len(value) > 3:
                     # result = "%B"
                     text_month = datetime.strptime(value, '%B')
@@ -83,15 +80,19 @@ class ValidateDate():
                     text_month = datetime.strptime(value, '%b')
                     split_date[1] = text_month.strftime('%m')
 
-        return split_date[0] + "/" + split_date[1] + "/" + split_date[2]
+        output = ""
+        try:
+            output = split_date[0] + "/" + split_date[1] + "/" + split_date[2]
+        except IndexError:
+            pass
+
+        return output
 
     def determine_date_format(self, data):
         day_format = "%d"
         month_format = self.determine_month_format(data)
-        #month_number = self.determine_month_format(data)
         year_format = "%Y"
         format = day_format + " " + month_format + " " + year_format
-        #format = "%d %m %Y"
 
         return format
 
