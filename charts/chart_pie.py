@@ -14,7 +14,7 @@ except ModuleNotFoundError and ImportError:
     sys.exit()
 
 
-class ChartPie(object): # Graham
+class ChartPie(object):  # Graham
 
     def create_pie_chart(self, data, data_type):
         chart_data = ""
@@ -42,14 +42,14 @@ class ChartPie(object): # Graham
 
     def _gender(self, data):
         data_labels = "Female", "Male"
-        title = "Gender"
+        title = "Gender of Staff"
         window_title = "Gender Pie Graph"
 
         return data_labels, title, window_title
 
     def _sales(self, data):
         data_labels = "< 250", "250 - 499", "500 - 749", "750 - 999"
-        title = "Sales Brackets"
-        window_title = "Sales Brackets"
+        title = "Sales Brackets of Staff"
+        window_title = "Sales Brackets of Staff"
 
         return data_labels, title, window_title

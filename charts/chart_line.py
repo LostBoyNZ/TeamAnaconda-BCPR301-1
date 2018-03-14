@@ -11,7 +11,7 @@ class ChartLine:
         plt.plot(age_list[0:], salary_list[0:])
         plt.title('Salary Vs Age')
         plt.ylabel('Salary')
-        plt.xlabel('Age')
+        plt.xlabel('Age of Staff')
         plt.grid(True)
         fig = plt.gcf()
         fig.canvas.set_window_title('Salary Vs Age')
