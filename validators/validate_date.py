@@ -100,9 +100,7 @@ class ValidateDate():
         data_to_wash =  Washer.replace_x_with_y("\W+", "/", data_to_wash)
         # remove st, nd and rd from date, e.g. 21st, 22nd, 23rd
         data_to_wash =  Washer.replace_x_with_y("st|nd|rd", "", data_to_wash)
-
-        output = self.month_string_to_number(data_to_wash)
-        print(output)
+        data_to_wash = self.month_string_to_number(data_to_wash)
 
         return data_to_wash
 
