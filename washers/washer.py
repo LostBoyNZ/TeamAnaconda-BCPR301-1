@@ -10,6 +10,7 @@ class Washer(object):
     #
     # Because it only keeps letters a-z
     # a-zA-Z0-9 would keep all letters and numbers
+
     def keep_only_these_in_string(regex_to_keep, data):
         regex_target = re.compile(r"[^" + regex_to_keep + "]")
 
@@ -20,6 +21,12 @@ class Washer(object):
     # Output will have one capital letter then all lowercase
     # e.g. tEsT would become Test
     def set_case(data):
+        """
+        >>> Washer.set_case('test')
+        'Test'
+        >>> Washer.set_case('TEST')
+        'Test'
+        """
         new_data = data.title()
 
         return new_data
@@ -28,7 +35,12 @@ class Washer(object):
     # For example calling:
     #   replace_x_with_y("-", "/")
     # Would change 10-01-1998 to 10/01/1998
+    @staticmethod
     def replace_x_with_y(x, y, data):
+        """
+        >>> Washer.replace_x_with_y('-','/', '-/-')
+        '///'
+        """
         target = x
         replacement = y
 
@@ -67,3 +79,7 @@ class Washer(object):
             data = str(data)
         return data
 
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(verbose=True)
