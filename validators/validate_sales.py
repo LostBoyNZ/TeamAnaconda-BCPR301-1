@@ -10,6 +10,23 @@ class ValidateSales(object):
         self.max_length = 3
 
     def is_valid(self, sales):
+        """
+        >>> i = ValidateSales()
+        >>> i.is_valid("780")
+        ('780', True)
+
+        >>> i.is_valid(7800)
+        ('7800', False)
+
+        >>> i.is_valid('  RFGVHJ#$%^&*  67       @#$%^&*(DFGHJ')
+        ('067', True)
+
+        >>> i.is_valid(' twenty-two ')
+        (' twenty-two ', False)
+
+        :param sales:
+        :return:
+        """
         result = False
         try:
             if isinstance(sales, int):

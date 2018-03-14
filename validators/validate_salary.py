@@ -12,6 +12,23 @@ class ValidateSalary(object):
         self.max_length = 3
 
     def is_valid(self, salary):
+        """
+        >>> i = ValidateSalary()
+        >>> i.is_valid("gfdjhs804")
+        ('804', True)
+
+        >>> i.is_valid(1000)
+        ('1000', False)
+
+        >>> i.is_valid('  RFGVHJ#$%^&*  6       @#$%^&*(DFGHJ')
+        ('06', True)
+
+        >>> i.is_valid(' twenty-two ')
+        (' twenty-two ', False)
+
+        :param salary:
+        :return:
+        """
         result = False
         try:
             if isinstance(salary, int):

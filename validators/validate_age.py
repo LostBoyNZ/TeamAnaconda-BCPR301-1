@@ -11,6 +11,23 @@ class ValidateAge(object):
         self.max_length = 2
 
     def is_valid(self, age):
+        """
+        >>> i = ValidateAge()
+        >>> i.is_valid("78")
+        ('78', True)
+
+        >>> i.is_valid(780)
+        ('780', False)
+
+        >>> i.is_valid('  RFGVHJ#$%^&*  67       @#$%^&*(DFGHJ')
+        ('67', True)
+
+        >>> i.is_valid(' twenty ')
+        (' twenty ', False)
+
+        :param age:
+        :return:
+        """
         result = False
         try:
             if isinstance(age, int):
@@ -27,3 +44,8 @@ class ValidateAge(object):
         except ValueError:
             result = False
             return age, result
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(verbose=True)
