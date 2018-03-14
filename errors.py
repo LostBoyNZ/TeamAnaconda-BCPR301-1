@@ -5,7 +5,7 @@ from databases.pickler import Pickle
 class ErrorHandler(object):  # Claye
 
     @staticmethod
-    def get_error_message(error_code, name = ""):
+    def get_error_message(error_code, name=""):
 
         error_dict = ErrorDict.get_error_dict(name)
 
