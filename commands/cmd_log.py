@@ -1,9 +1,6 @@
 # Graham
 
-_show_non_fatal_errors = True
-
 import sys
-
 
 try:
     from errors import ErrorHandler as err
@@ -21,6 +18,12 @@ try:
     from log_file_handler import LogFileHandler as lfh
 except NameError and ModuleNotFoundError and ImportError:
     print(err.get_error_message(404, "log_file_handler"))
+    sys.exit()
+
+try:
+    from pickler_sqllite import Pickle as pkl
+except NameError and ModuleNotFoundError and ImportError:
+    print(err.get_error_message(404, "pickler_sqllite"))
     sys.exit()
 
 
