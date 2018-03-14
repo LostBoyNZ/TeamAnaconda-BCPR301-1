@@ -124,9 +124,7 @@ class ValidateDate():
             date_format = self.determine_date_format(washed_data)
             date_to_check = Washer.replace_x_with_y('\W+', " ", washed_data)
             result = self.is_real_date(date_to_check, date_format)
-            if result == True:
-                date_output = Washer.replace_x_with_y(" ", "/", date_to_check)
-            else:
-                date_output = date_to_check
-        print(date_output)
+
+            date_output = Washer.replace_x_with_y(" ", "/", date_to_check)
+
         return date_output, result
