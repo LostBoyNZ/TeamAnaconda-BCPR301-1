@@ -19,7 +19,6 @@ class Pickler(object):
         pickled = dumps(data)
         return pickled
 
-
     @staticmethod
     def unpickle_data(data):
         un_p = []  # un-pickled list
