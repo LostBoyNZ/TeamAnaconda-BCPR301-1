@@ -23,12 +23,12 @@ class DataProcessor(object):
                 valid += 1
             for kv in v.keys():
                 if kv == 'gender':
-                    result = vg.is_valid(vg, dict_root[k][kv])
+                    result = vg.is_valid(dict_root[k][kv])
                     if result[1]:
                         dict_root[k][kv] = result[0]
                         valid += 1
                 if kv == 'bmi':
-                    result = vb.is_valid(vb, dict_root[k][kv])
+                    result = vb.is_valid(dict_root[k][kv])
                     if result[1]:
                         dict_root[k][kv] = result[0]
                         valid += 1
