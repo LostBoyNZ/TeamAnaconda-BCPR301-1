@@ -19,7 +19,7 @@ class LogFileHandler(object):
             try:
                 print(err.get_error_message(403, "log"))
                 print("Creating log file...")
-                self._create_file(file_name)
+                self._create_file(self, file_name)
             except OSError:
                 print(err.get_error_message(401, "log"))
             except:
@@ -46,7 +46,7 @@ class LogFileHandler(object):
             try:
                 print(err.get_error_message(403, "log"))
                 print("Creating log file...")
-                self._create_file(file_name)
+                self._create_file(self, file_name)
             except OSError:
                 print(err.get_error_message(401, "log"))
             except:
@@ -83,13 +83,14 @@ class LogFileHandler(object):
         file = self.open_file(self, file_name, "w+")
         self.close_file(file)
 
-    def output_file(self, file_contents, direction):
-        if direction == "r":
-            for line in file_contents[::-1]:
-                print(line)
-        else:
-            for line in file_contents:
-                print(line)
+    def output_file(file_contents, direction):
+        if file_contents:
+            if direction == "r":
+                for line in file_contents[::-1]:
+                    print(line)
+            else:
+                for line in file_contents:
+                    print(line)
 
     def get_log(self, file_name):
         file_contents = self.load_file_data(file_name)
