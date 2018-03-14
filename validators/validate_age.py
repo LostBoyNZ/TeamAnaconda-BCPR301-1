@@ -29,13 +29,15 @@ class ValidateAge(object):
             if isinstance(age, int):
                 age = Wa.to_string(age, self.min_length)
                 if Va.is_minimum(age, self.min_age):
-                    result = Va.is_within_length(self.min_length, self.max_length, str(age))
+                    result = Va.is_within_length(
+                        self.min_length, self.max_length, str(age))
             elif isinstance(int(Wa.keep_only_nums(age)), int):
                 if Wa.strip_string(age):
                     age = Wa.keep_only_nums(age)
                     age = Wa.to_string(age, self.min_length)
                     if Va.is_minimum(age, self.min_age):
-                        result = Va.is_within_length(self.min_length, self.max_length, str(age))
+                        result = Va.is_within_length(
+                            self.min_length, self.max_length, str(age))
             return age, result
         except ValueError:
             result = False
