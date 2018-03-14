@@ -24,4 +24,7 @@ Q010,M,45,999,Underweight,725,31-11-1971
 Q011,M,46,999,Underweight,725,31-01-1971
 Q012,M,46,999,Underweight,725,31-Jan-1971
 Q013,M,46,999,Underweight,725,Jan-31-1971
-Q013,M,46,999,Underweight,725,31-12-1971
+Q014,M,46,999,Underweight,725,31-12-1971
+A001,F,21,001,Underweight,12,1-1-1996
+A $$$ 283,Ma le,2$0,   444,Obese,12,1st Feb 1998
+A222,Girl,20,777,Normal,12,2nd January 1998
