@@ -16,5 +16,3 @@ class ChartLine:
         fig = plt.gcf()
         fig.canvas.set_window_title('Salary Vs Age')
         plt.show()
-
-

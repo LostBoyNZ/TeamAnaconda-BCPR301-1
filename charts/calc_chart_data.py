@@ -62,13 +62,10 @@ class CalcData(object):
         >>> i = CalcData()
         >>> i.is_valid("A001,gender M,age 52,sales 123,bmi Overweight,salary 50,birthday 23/10/1998,valid 1,")
         True
-
         >>> i.is_valid("a001,M,52,123,Overweight,50,23-10-1998 Z005,F,18,624,Normal,85,25-04-1158 C078,F,35")
         False
-
         >>> i.is_valid("class ErrorHandler(object):  # Claye @staticmethod def get_error_message(error_code, ")
         False
-
         :param file_contents:
         :return:
         """
