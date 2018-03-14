@@ -1,7 +1,7 @@
 # Rochelle
 import sqlite3
 from sqlite3 import Error
-from pickler_sqlite import Pickle
+from databases.pickler import Pickler
 
 
 class CompanyDatabase(object):
@@ -47,7 +47,7 @@ class CompanyDatabase(object):
         count = 1
         try:
             for person in staff:
-                p = Pickle.pickle_data(person)
+                p = Pickler.pickle_data(person)
                 self._cursor.execute("""INSERT INTO Staff (empid, gender, age, sales, bmi, salary, birthday, valid)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)""", (p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]))
                 print(count, "Person added")
@@ -74,7 +74,7 @@ class CompanyDatabase(object):
             self._cursor.execute("SELECT * FROM Staff")
             rows = self._cursor.fetchall()
             for row in rows:
-                un_pickled = Pickle.unpickle_data(row)
+                un_pickled = Pickler.unpickle_data(row)
                 print(un_pickled)
         except Error as e:
             print("An error occurred:", e)
@@ -90,11 +90,3 @@ class CompanyDatabase(object):
     def close(self):
         """Close the database."""
         self._connection.close()
-
-
-data = [("a001", "M", 52, 123, "Overweight", 50, '23/10/1998', 1), ("002", "M", 23, 201, "Normal", 200, '01/08/1991', 1)]
-db = CompanyDatabase()
-db.create_connection()
-db.insert_staff(data)
-db.get_staff()
-db.close()
