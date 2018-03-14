@@ -19,8 +19,7 @@ except NameError and ModuleNotFoundError and ImportError:
 # Rochelle
 class View(Command):
     """
-    Description:
-        Fetches data from a file, counts the data and sends to the appropriate chart for output.
+    Fetches data from a file, counts the data and sends to the appropriate chart for output.
 
     VIEW /L /B /P /? [datatype]
 
@@ -30,7 +29,7 @@ class View(Command):
     /?	Help about the View command
 
     [datatype]
-    Specifies the datatype to display the chart for
+        Specifies the datatype to display the chart for
     """
 
     # do a prompt

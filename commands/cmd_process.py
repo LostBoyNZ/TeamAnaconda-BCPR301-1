@@ -21,19 +21,22 @@ except NameError and ModuleNotFoundError and ImportError:
     sys.exit()
 
 
-class Process(Command):
+class Process(Command):  # Claye
     """
         Fetches data from a file, validates the data and saves the washed data into a local file.
 
-        PROCESS [/D]
+        PROCESS [/D] [separator]
 
-        -D		Display details of data validation
+        -D		    Display details of data validation
+        separator   Allows you to specify a custom separator
 
         Supported file formats include:
             .txt
             .csv
+            .xlsx
+            .xls
     """
-
+    detail_mode = ""
     # translates switches into the method names, e.g. /q switch would run quit
     def get_switch(self, switch):
         return {
@@ -47,14 +50,17 @@ class Process(Command):
 
     # put the default action for this class (no switches used) here
     def _default(self):
+        if self.user_string:
+            separator = self.user_string
+        else:
+            separator = ","
         i = FileReader()
-        FileReader.call_file(i, '')
+        FileReader.call_file(i, self.detail_mode, separator)
 
     # put the methods for each switch here
     def _detail(self):
-        i = FileReader()
-        FileReader.call_file(i, 'd')
+        self.detail_mode = "d"
+        self._default()
 
     def _help(self):
         print(self.__doc__)
-
