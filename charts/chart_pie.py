@@ -2,54 +2,34 @@
 import sys
 
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - errors.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 try:
     import matplotlib.pyplot as plt
-except ModuleNotFoundError and ImportError:
-    print("matplotlib.pyplot not avaliable")
+except NameError and ModuleNotFoundError and ImportError:
+    print(Err.get_error_message(404, "matplotlib.pyplot"))
     sys.exit()
 
 
 class ChartPie(object):  # Graham
 
-    def create_pie_chart(self, data, data_type):
+    def create_pie_chart(self, data, attributes):
         chart_data = ""
-        if data_type == "gender":
-            data_labels, title, window_title = self._gender(data)
-            chart_data = data_type
-        elif data_type == "sales":
-            data_labels, title, window_title = self._sales(data)
-            chart_data = data_type
-        else:
-            # This type of data isn't supported in a pie chart
-            print(err.get_error_message(601))
+        title = attributes['title']
+        data_labels = attributes['data_labels']
+        window_title = attributes['window_title']
 
-        if chart_data:
-            sizes = data
-            labels = data_labels
-            fig1, ax1 = plt.subplots()
-            ax1.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
-            ax1.axis('equal')
-            ax1.set_title(title)
-            fig = plt.gcf()
-            fig.canvas.set_window_title(window_title)
+        sizes = data
+        labels = data_labels
 
-            plt.show()
+        fig1, ax1 = plt.subplots()
+        ax1.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+        ax1.axis('equal')
+        ax1.set_title(title)
+        fig = plt.gcf()
+        fig.canvas.set_window_title(window_title)
 
-    def _gender(self, data):
-        data_labels = "Female", "Male"
-        title = "Gender of Staff"
-        window_title = "Gender Pie Graph"
-
-        return data_labels, title, window_title
-
-    def _sales(self, data):
-        data_labels = "< 250", "250 - 499", "500 - 749", "750 - 999"
-        title = "Sales Brackets of Staff"
-        window_title = "Sales Brackets of Staff"
-
-        return data_labels, title, window_title
+        plt.show()

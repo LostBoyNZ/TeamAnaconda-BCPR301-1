@@ -20,14 +20,13 @@ except NameError and ModuleNotFoundError and ImportError:
     sys.exit()
 
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - errors.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 
 class CalcData(object):
-
     def __init__(self):
         # create counts for chart data
         self.count_gender_m = 0
@@ -147,7 +146,8 @@ class CalcData(object):
         elif month == '12':
             self.count_birth_dec += 1
 
-    # if person has valid data - send to appropriate function depending on their chart choice
+    # if person has valid data
+    # send to appropriate function depending on their chart choice
     def calculate(self, file_contents, choice):
         for line in file_contents[1:]:
             fields = line.split(",")
@@ -176,31 +176,54 @@ class CalcData(object):
         i = ChartBar()
         if choice == 'bmi':
             title = 'BMI'
-            ylabel = 'Number of Staff'
+            y_label = 'Number of Staff'
             objects = ('Obesity', 'Overweight', 'Normal', 'Underweight')
-            data = [self.count_bmi_ov, self.count_bmi_ob, self.count_bmi_un, self.count_bmi_no]
+            data = [self.count_bmi_ov, self.count_bmi_ob,
+                    self.count_bmi_un, self.count_bmi_no]
             fig_title = 'BMI Chart'
-            i.create_bar_chart(title, ylabel, objects, data, fig_title)
+            i.create_bar_chart(title, y_label, objects, data, fig_title)
         elif choice == 'birthday':
             title = 'Birth Months'
-            ylabel = 'Number of Staff'
-            objects = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
-            data = [self.count_birth_jan, self.count_birth_feb, self.count_birth_mar, self.count_birth_apr,
-                    self.count_birth_may, self.count_birth_jun, self.count_birth_jul, self.count_birth_aug,
-                    self.count_birth_sep, self.count_birth_oct, self.count_birth_nov, self.count_birth_dec]
+            y_label = 'Number of Staff'
+            objects = ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
+                       'Aug', 'Sep', 'Oct', 'Nov', 'Dec')
+            data = [self.count_birth_jan, self.count_birth_feb,
+                    self.count_birth_mar, self.count_birth_apr,
+                    self.count_birth_may, self.count_birth_jun,
+                    self.count_birth_jul, self.count_birth_aug,
+                    self.count_birth_sep, self.count_birth_oct,
+                    self.count_birth_nov, self.count_birth_dec]
             fig_title = 'Birth Months Chart'
-            i.create_bar_chart(title, ylabel, objects, data, fig_title)
+            i.create_bar_chart(title, y_label, objects, data, fig_title)
 
     def pie_chart(self, choice):
-        i = ChartPie()
-        if choice == 'sales':
-            data = [self.count_sales_group1, self.count_sales_group2, self.count_sales_group3, self.count_sales_group4]
-            i.create_pie_chart(data, choice)
-        elif choice == 'gender':
+        chart = ChartPie()
+        data_labels = []
+        title = ""
+        window_title = ""
+        data = []
+
+        if choice == 'gender':
+            data_labels = "Female", "Male"
+            title = "Gender of Staff"
+            window_title = "Gender Pie Graph"
             data = [self.count_gender_f, self.count_gender_m]
-            i.create_pie_chart(data, choice)
+        elif choice == 'sakes':
+            data_labels = "< 250", "250 - 499", "500 - 749", "750 - 999"
+            title = "Sales Brackets of Staff"
+            window_title = "Sales Brackets of Staff"
+            data = [self.count_sales_group1, self.count_sales_group2,
+                    self.count_sales_group3, self.count_sales_group4]
+        else:
+            print(Err.get_error_message(601))
+
+        if title:
+            attributes = {'title': title, 'data_labels': data_labels,
+                          'window_title': window_title}
+            chart.create_pie_chart(data, attributes)
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)

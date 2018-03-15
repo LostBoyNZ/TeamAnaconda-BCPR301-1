@@ -1,8 +1,19 @@
-import matplotlib.pyplot as plt
+import sys
+
+try:
+    from errors import ErrorHandler as Err
+except NameError and ModuleNotFoundError and ImportError:
+    print("Fatal Error - Errors.py not found.")
+    sys.exit()
+
+try:
+    import matplotlib.pyplot as plt
+except NameError and ModuleNotFoundError and ImportError:
+    print(Err.get_error_message(404, "matplotlib.pyplot"))
+    sys.exit()
 
 
 class ChartLine:
-
     @staticmethod
     def create_line_grid(age_list, salary_list):
         salary_list = [int(i) for i in salary_list]
