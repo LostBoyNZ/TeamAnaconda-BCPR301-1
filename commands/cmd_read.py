@@ -3,32 +3,32 @@
 import sys
 
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - errors.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 try:
     from commands.command import Command
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "command"))
+    print(Err.get_error_message(404, "command"))
     sys.exit()
 
 try:
-    from log_file_handler import LogFileHandler as lfh
+    from log_file_handler import LogFileHandler as Lfh
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "log_file_handler"))
+    print(Err.get_error_message(404, "log_file_handler"))
     sys.exit()
 
 
 class Read(Command):
-    '''
+    """
     Outputs a text file, and prompts for a file name if not provided in command
 
     READ [/?] [filename]
 
     /?	Help about the Quit command
-    '''
+    """
 
     # translates switches into the method names, e.g. /q switch would run quit
     def get_switch(self, switch):
@@ -54,7 +54,8 @@ class Read(Command):
     def _request_file_name(self):
         output = ""
 
-        file_name = input("Please enter the .txt filename to read data from >>> ")
+        file_name = input(
+            "Please enter the .txt filename to read data from >>> ")
         if file_name:
             output = self._check_file_name(file_name)
 
@@ -78,10 +79,10 @@ class Read(Command):
             try:
                 file_contents = open(file_name, "r")
             except FileNotFoundError:
-                print(err.get_error_message(201))
+                print(Err.get_error_message(201))
             except OSError:
-                print(err.get_error_message(102))
+                print(Err.get_error_message(102))
 
-            lfh.output_file(file_contents, direction)
+            Lfh.output_file(file_contents, direction)
         else:
-            print(err.get_error_message(204))
+            print(Err.get_error_message(204))

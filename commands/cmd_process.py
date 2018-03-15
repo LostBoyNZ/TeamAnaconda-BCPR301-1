@@ -3,9 +3,9 @@
 import sys
 
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - errors.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 try:
@@ -23,18 +23,19 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class Process(Command):  # Claye
     """
-        Fetches data from a file, validates the data and saves the washed data into a local file.
+    Fetches data from a file, validates the data
+    and saves the washed data into a local file.
 
-        PROCESS [/D] [separator]
+    PROCESS [/D] [separator]
 
-        -D    	    Display details of data validation
-        separator   Allows you to specify a custom separator
+    -D    	    Display details of data validation
+    separator   Allows you to specify a custom separator
 
-        Supported file formats include:
-            .txt
-            .csv
-            .xlsx
-            .xls
+    Supported file formats include:
+        .txt
+        .csv
+        .xlsx
+        .xls
     """
     detail_mode = ""
 

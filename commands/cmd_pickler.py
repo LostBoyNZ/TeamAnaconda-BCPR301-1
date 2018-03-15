@@ -3,39 +3,39 @@
 import sys
 
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - errors.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 try:
     from commands.command import Command
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "command"))
+    print(Err.get_error_message(404, "command"))
     sys.exit()
 
 try:
-    from log_file_handler import LogFileHandler as lfh
+    from log_file_handler import LogFileHandler as Lfh
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "log_file_handler"))
+    print(Err.get_error_message(404, "log_file_handler"))
     sys.exit()
 
 try:
-    from databases.pickler import Pickler as pkl
+    from databases.pickler import Pickler as Pkl
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "pickler"))
+    print(Err.get_error_message(404, "pickler"))
     sys.exit()
 
 try:
     from file_reader import FileReader as fr
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "file_reader"))
+    print(Err.get_error_message(404, "file_reader"))
     sys.exit()
 
 
 class Pickler(Command):  # Graham, Claye
-    '''
-    Picklers or unpickles
+    """
+    Pickles or un-pickles
 
     PICKLER [D] [P] [U] [?] [data]
 
@@ -45,8 +45,8 @@ class Pickler(Command):  # Graham, Claye
     /?  Help
 
     [data]
-    	Specifies either [log] or [errors] as the data to use
-    '''
+        Specifies either [log] or [errors] as the data to use
+    """
     pickled_log = []
     pickled_errors = []
     display_detail_output = False
@@ -83,39 +83,39 @@ class Pickler(Command):  # Graham, Claye
         self.display_detail_output = True
 
     def _pickle_log(self):
-        data_to_pickle = lfh.get_log(lfh, "log.txt")
+        data_to_pickle = Lfh.get_log(Lfh, "log.txt")
         print(data_to_pickle)
-        pickled_data = pkl.pickle_data(data_to_pickle)
+        pickled_data = Pkl.pickle_data(data_to_pickle)
         self.pickled_log.append(pickled_data)
         if self.display_detail_output:
             print("Input: {}".format(data_to_pickle))
             print("Pickled Data: {}".format(self.pickled_log))
 
     def _unpickle_log(self):
-        unpickled_data = ""
+        un_pickled_data = ""
 
         try:
-            unpickled_data = pkl.unpickle_data(self.pickled_log[0])
+            un_pickled_data = Pkl.unpickle_data(self.pickled_log[0])
         except IndexError:
-            print(err.get_error_message(208))
+            print(Err.get_error_message(208))
         if self.display_detail_output:
-            print("Unpickled Data: {}".format(unpickled_data))
+            print("Unpickled Data: {}".format(un_pickled_data))
 
-        return unpickled_data
+        return un_pickled_data
 
     def _pickle_errors(self):
-        pickled_data = err.send_data_to_pickler()
-        self.pickled_errors.append(pickled_data)
+        pickled_data = Err.send_data_to_pickler()
+        self.pickled_Errors.append(pickled_data)
         if self.display_detail_output:
             print("Pickled Data: {}".format(self.pickled_log))
 
     def _unpickle_errors(self):
-        unpickled_data = ""
+        un_pickled_data = ""
 
         try:
-            unpickled_data = pkl.unpickle_data(self.pickled_errors[0])
+            un_pickled_data = Pkl.unpickle_data(self.pickled_errors[0])
         except IndexError:
-            print(err.get_error_message(208))
+            print(Err.get_error_message(208))
         if self.display_detail_output:
-            print("Unpickled Data: {}".format(unpickled_data))
-        return unpickled_data
+            print("Unpickled Data: {}".format(un_pickled_data))
+        return un_pickled_data

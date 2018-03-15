@@ -1,25 +1,26 @@
 # Graham
 import sys
-import errors
+
 from charts.calc_chart_data import CalcData
 
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - errors.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 try:
     from commands.command import Command
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "command"))
+    print(Err.get_error_message(404, "command"))
     sys.exit()
 
 
 # Rochelle
 class View(Command):
     """
-    Fetches data from a file, counts the data and sends to the appropriate chart for output.
+    Fetches data from a file, counts the data
+    and sends to the appropriate chart for output.
 
     VIEW /L /B /P /? [datatype]
 
@@ -33,7 +34,8 @@ class View(Command):
     """
 
     # do a prompt
-    # translates switches into the method names, e.g. /l switch would run line chart
+    # translates switches into the method names
+    # e.g. /l switch would run line chart
     def get_switch(self, switch):
         return {
             'l': self._line,
@@ -54,12 +56,13 @@ class View(Command):
 
             if file_contents:  # if contents isn't empty
                 if i.is_valid(file_contents):  # as long as contents are valid
-                    i.calculate(file_contents, choice)  # calculate the chart data
+                    i.calculate(file_contents,
+                                choice)  # calculate the chart data
                     return i  # return i so chart can be called
                 else:
-                    print(err.get_error_message(210))
+                    print(Err.get_error_message(210))
         except FileNotFoundError:
-            print(errors.ErrorHandler.get_error_message(201))
+            print(Err.ErrorHandler.get_error_message(201))
 
     # Graham
     def _load_file_data(self, file_name):
@@ -71,7 +74,7 @@ class View(Command):
                     file_contents.append(a_line)
             file.close()
         except FileNotFoundError:
-            print(err.get_error_message(403, "requested file"))
+            print(Err.get_error_message(403, "requested file"))
 
         return file_contents
 
@@ -82,7 +85,7 @@ class View(Command):
     def _line(self):
         # line chart for sales and salary
         if self.user_string:
-            print(err.get_error_message(102))
+            print(Err.get_error_message(102))
         else:
             valid_data = self.get_data('line')
             if valid_data:
@@ -93,9 +96,10 @@ class View(Command):
         if self.user_string == 'bmi' or self.user_string == 'birthday':
             valid_data = self.get_data(self.user_string)
             if valid_data:
-                valid_data.bar_chart(self.user_string)  # user string for checking which chart dat type
+                # user string for checking which chart dat type
+                valid_data.bar_chart(self.user_string)
         else:
-            print(err.get_error_message(102))
+            print(Err.get_error_message(102))
 
     def _pie(self):
         if self.user_string == 'sales' or self.user_string == 'gender':
@@ -103,11 +107,13 @@ class View(Command):
             if valid_data:
                 valid_data.pie_chart(self.user_string)
         else:
-            print(err.get_error_message(102))
+            print(Err.get_error_message(102))
 
     def _help(self):
         print(self.__doc__)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)

@@ -1,5 +1,4 @@
 class Command:
-
     my_command_line = None
     user_string = ""
 
@@ -13,9 +12,11 @@ class Command:
         self.my_command_line = command_line
         has_switches = False
 
-        # extract and run switch methods and extract user data, e.g. file name, from the command
+        # extract and run switch methods and extract user data
+        # e.g. file name, from the command
         if switches_and_data:
-            methods_to_run, self.user_string = self.get_switch_and_data(switches_and_data, self)
+            methods_to_run, self.user_string = self.get_switch_and_data(
+                switches_and_data, self)
             if methods_to_run:
                 self._run_switch_methods(methods_to_run)
                 has_switches = True
@@ -41,7 +42,7 @@ class Command:
                     switch = my_command.get_switch(data[1])
                     methods_to_run.append(switch)
                 else:
-                    not_a_switch = (data)
+                    not_a_switch = data
                     strings_to_keep.append(not_a_switch)
             except IndexError:
                 pass

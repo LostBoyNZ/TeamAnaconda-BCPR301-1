@@ -1,12 +1,14 @@
 # Graham
 
-import sys
 import os
+import sys
+
+_show_non_fatal_errors = True
 
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - errors.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 try:
@@ -18,55 +20,54 @@ try:
     from commands.cmd_quit import Quit
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "quit"))
+        print(Err.get_error_message(403, "quit"))
     pass
 
 try:
     from commands.cmd_log import Log
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "log"))
+        print(Err.get_error_message(403, "log"))
     pass
 
 try:
     from commands.cmd_read import Read
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "read"))
+        print(Err.get_error_message(403, "read"))
     pass
 
 try:
     from commands.cmd_process import Process
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "process"))
+        print(Err.get_error_message(403, "process"))
     pass
 
 try:
     from commands.cmd_pickler import Pickler
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "cmd_pickler"))
+        print(Err.get_error_message(403, "cmd_pickler"))
     pass
 
 try:
     from commands.cmd_view import View
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "view"))
+        print(Err.get_error_message(403, "view"))
     pass
 
 
 class Help(Command):
-    '''
+    """
     Displays a list of supported commands.
 
     HELP [command]
 
     [command]
         Specifies the command to display help about
-    '''
-    _show_non_fatal_errors = True
+    """
 
     # translates switches into method names, /q switch would run quit
     def get_switch(self, switch):
@@ -93,7 +94,7 @@ class Help(Command):
         for root, dirs, files in os.walk(path):
             for filename in files:
                 split_filename = filename.split(".", 1)
-                if split_filename[0].startswith("cmd_") and\
+                if split_filename[0].startswith("cmd_") and \
                         split_filename[1].endswith("py"):
                     # Hide the cmd_ from the start of the file name
                     filename = split_filename[0]

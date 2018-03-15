@@ -3,32 +3,32 @@
 import sys
 
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - errors.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 try:
     from commands.command import Command
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "command"))
+    print(Err.get_error_message(404, "command"))
     sys.exit()
 
 try:
-    from log_file_handler import LogFileHandler as lfh
+    from log_file_handler import LogFileHandler as Lfh
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "log_file_handler"))
+    print(Err.get_error_message(404, "log_file_handler"))
     sys.exit()
 
 try:
-    from databases.pickler import Pickler as pkl
+    from databases.pickler import Pickler as Pkl
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "pickler"))
+    print(Err.get_error_message(404, "pickler"))
     sys.exit()
 
 
 class Log(Command):
-    '''
+    """
     Outputs the lines of the log.txt file.
 
     LOG [/?] [/R] [/A] [text]
@@ -37,7 +37,7 @@ class Log(Command):
     /R	Output the log file in reverse (latest on top)
     /W  Wipes the log file after confirmation
     /?	Help about the Quit command
-    '''
+    """
 
     FILE_NAME = "log.txt"
 
@@ -53,26 +53,26 @@ class Log(Command):
     # put the default action for this class (no switches used) here
     def _default(self):
 
-        file_contents = lfh.load_file_data(lfh, self.FILE_NAME)
+        file_contents = Lfh.load_file_data(Lfh, self.FILE_NAME)
         direction = ""
         if len(file_contents) == 0:
-            print(err.get_error_message(208))
+            print(Err.get_error_message(208))
 
-        lfh.output_file(file_contents, direction)
+        Lfh.output_file(file_contents, direction)
 
     def _append(self):
-        lfh.append_file(self.FILE_NAME, self.user_string)
+        Lfh.append_file(self.FILE_NAME, self.user_string)
         print("Written to log: {}".format(self.user_string))
 
     def _reverse(self):
-        file_contents = lfh.load_file_data(lfh, self.FILE_NAME)
+        file_contents = Lfh.load_file_data(Lfh, self.FILE_NAME)
         direction = "r"
 
-        lfh.output_file(file_contents, direction)
+        Lfh.output_file(file_contents, direction)
 
     def _wipe(self):
         if self.my_command_line.confirm("wipe the log"):
-            lfh.wipe_file(lfh, self.FILE_NAME)
+            Lfh.wipe_file(Lfh, self.FILE_NAME)
 
     def _help(self):
         print(self.__doc__)
