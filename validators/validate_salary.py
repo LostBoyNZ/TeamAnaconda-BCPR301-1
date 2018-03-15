@@ -1,6 +1,23 @@
 # Rochelle
-from validators.validator import Validator as Va
-from washers.washer import Washer as Wa
+import sys
+
+try:
+    from errors import ErrorHandler as Err
+except NameError and ModuleNotFoundError and ImportError:
+    print("Fatal Error - Errors.py not found.")
+    sys.exit()
+
+try:
+    from validators.validator import Validator as Va
+except NameError and ModuleNotFoundError and ImportError:
+    print(Err.get_error_message(404, "validator.py"))
+    sys.exit()
+
+try:
+    from washers.washer import Washer as Wa
+except NameError and ModuleNotFoundError and ImportError:
+    print(Err.get_error_message(404, "washer.py"))
+    sys.exit()
 
 
 class ValidateSalary(object):
@@ -36,7 +53,8 @@ class ValidateSalary(object):
                     salary = Wa.to_string(salary, self.min_length)
                     if Va.is_minimum(salary, self.min_salary):
                         result = Va.is_within_length(self.min_length,
-                                                     self.max_length, str(salary))
+                                                     self.max_length,
+                                                     str(salary))
             else:
                 result = False
 

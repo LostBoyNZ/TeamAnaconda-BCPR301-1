@@ -1,22 +1,28 @@
 # Graham
 
-from datetime import datetime
 import sys
+from datetime import datetime
 
 try:
-    from validators.validator import Validator
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - validator.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 try:
-    from washers.washer import Washer
+    from validators.validator import Validator as Va
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - washer.py not found.")
+    print(Err.get_error_message(404, "validator.py"))
+    sys.exit()
+
+try:
+    from washers.washer import Washer as Wa
+except NameError and ModuleNotFoundError and ImportError:
+    print(Err.get_error_message(404, "washer.py"))
     sys.exit()
 
 
-class ValidateDate():   # Graham
+class ValidateDate:  # Graham
 
     @staticmethod
     def split_string(delimiter, data):
@@ -66,7 +72,7 @@ class ValidateDate():   # Graham
         # default to number format like 09 for September
         result = "%m"
 
-        date_to_check = Washer.replace_x_with_y("\W+", "/", data)
+        date_to_check = Wa.replace_x_with_y("\W+", "/", data)
         split_date = self.split_string("/", date_to_check)
         for value in split_date:
             if value.isalpha():
@@ -79,7 +85,7 @@ class ValidateDate():   # Graham
 
     def month_string_to_number(self, data):
 
-        date_to_check = Washer.replace_x_with_y("\W+", "/", data)
+        date_to_check = Wa.replace_x_with_y("\W+", "/", data)
         split_date = self.split_string("/", date_to_check)
         for value in split_date:
             if value.isalpha():
@@ -110,9 +116,9 @@ class ValidateDate():   # Graham
 
     def wash_data(self, data_to_wash):
         # replace any non-word character with a forward slash
-        data_to_wash = Washer.replace_x_with_y("\W+", "/", data_to_wash)
+        data_to_wash = Wa.replace_x_with_y("\W+", "/", data_to_wash)
         # remove st, nd and rd from date, e.g. 21st, 22nd, 23rd
-        data_to_wash = Washer.replace_x_with_y("st|nd|rd", "", data_to_wash)
+        data_to_wash = Wa.replace_x_with_y("st|nd|rd", "", data_to_wash)
         data_to_wash = self.month_string_to_number(data_to_wash)
 
         return data_to_wash
@@ -123,7 +129,7 @@ class ValidateDate():   # Graham
         data_to_validate = data_to_validate.lstrip(' ')
 
         # If there's no numbers in string, just return as is, it's bad data
-        if Validator.has_this_many_numbers(0, data_to_validate):
+        if Va.has_this_many_numbers(0, data_to_validate):
             date_output = data_to_validate
         else:
             washed_data = self.wash_data(data_to_validate)
@@ -135,14 +141,15 @@ class ValidateDate():   # Graham
             washed_data = washed_data.strip()
 
             date_format = self.determine_date_format(washed_data)
-            date_to_check = Washer.replace_x_with_y('\W+', " ", washed_data)
+            date_to_check = Wa.replace_x_with_y('\W+', " ", washed_data)
             result = self.is_real_date(date_to_check, date_format)
 
-            date_output = Washer.replace_x_with_y(" ", "/", date_to_check)
+            date_output = Wa.replace_x_with_y(" ", "/", date_to_check)
 
         return date_output, result
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)

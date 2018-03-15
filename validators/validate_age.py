@@ -1,10 +1,26 @@
 # Rochelle
-from validators.validator import Validator as Va
-from washers.washer import Washer as Wa
+import sys
+
+try:
+    from errors import ErrorHandler as Err
+except NameError and ModuleNotFoundError and ImportError:
+    print("Fatal Error - Errors.py not found.")
+    sys.exit()
+
+try:
+    from validators.validator import Validator as Va
+except NameError and ModuleNotFoundError and ImportError:
+    print(Err.get_error_message(404, "validator.py"))
+    sys.exit()
+
+try:
+    from washers.washer import Washer as Wa
+except NameError and ModuleNotFoundError and ImportError:
+    print(Err.get_error_message(404, "washer.py"))
+    sys.exit()
 
 
 class ValidateAge(object):
-
     def __init__(self):
         self.min_age = 1
         self.min_length = 2
@@ -46,4 +62,5 @@ class ValidateAge(object):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)

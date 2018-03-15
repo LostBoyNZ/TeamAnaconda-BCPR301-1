@@ -3,6 +3,7 @@ import re
 
 class Validator(object):
     # Graham
+    @staticmethod
     def is_within_length(min_length, max_length, data):
         """
         >>> Validator.is_within_length(1, 3, '12')
@@ -20,12 +21,13 @@ class Validator(object):
         """
         result = False
 
-        if len(data) >= min_length and len(data) <= max_length:
+        if min_length <= len(data) <= max_length:
             result = True
 
         return result
 
     # Graham
+    @staticmethod
     def is_correct_pattern(target_pattern, data):
         """
         >>> Validator.is_correct_pattern('\D\d\d\d', "A123")
@@ -45,6 +47,7 @@ class Validator(object):
         return result
 
     # Graham
+    @staticmethod
     def has_this_many_numbers(count, data):
         """
         >>> Validator.has_this_many_numbers(3, "A123")
@@ -81,6 +84,7 @@ class Validator(object):
         return letter_count == count
 
     # Claye
+    @staticmethod
     def is_in_list(data, listed):
         """
         >>> Validator.is_in_list("Hi", ['Hi', 'Bye'])
@@ -95,6 +99,7 @@ class Validator(object):
         return result
 
     # Rochelle
+    @staticmethod
     def is_minimum(data, minimum):
         """
         >>> Validator.is_minimum(10, 1)
@@ -110,4 +115,5 @@ class Validator(object):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
