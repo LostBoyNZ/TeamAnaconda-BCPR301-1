@@ -1,11 +1,10 @@
 # Rochelle
-from pickle import dumps
-from pickle import Unpickler
 from io import BytesIO
+from pickle import Unpickler
+from pickle import dumps
 
 
 class Pickler(object):
-
     @staticmethod
     def pickle_data(data):
         p = []  # pickled_list

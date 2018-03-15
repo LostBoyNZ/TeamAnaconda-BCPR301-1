@@ -1,6 +1,7 @@
 # Rochelle
 import sqlite3
 from sqlite3 import Error
+
 from databases.pickler import Pickler
 
 
@@ -32,7 +33,7 @@ class CompanyDatabase(object):
     def create_staff_table(self):
         sql_command = """
         CREATE TABLE Staff (
-        empid TEXT PRIMARY KEY,
+        emp_id TEXT PRIMARY KEY,
         gender VARCHAR(1),
         age INT,
         sales INT,
@@ -48,8 +49,10 @@ class CompanyDatabase(object):
         try:
             for person in staff:
                 p = Pickler.pickle_data(person)
-                self._cursor.execute("""INSERT INTO Staff (empid, gender, age, sales, bmi, salary, birthday, valid)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)""", (p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]))
+                self._cursor.execute("""INSERT INTO Staff (emp_id, gender, 
+                age, sales, bmi, salary, birthday, valid)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)""", (
+                p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]))
                 print(count, "Person added")
                 count += 1
                 self.commit()
