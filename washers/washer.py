@@ -11,6 +11,7 @@ class Washer(object):
     # Because it only keeps letters a-z
     # a-zA-Z0-9 would keep all letters and numbers
 
+    @staticmethod
     def keep_only_these_in_string(regex_to_keep, data):
         regex_target = re.compile(r"[^" + regex_to_keep + "]")
 
@@ -20,6 +21,7 @@ class Washer(object):
     # Graham
     # Output will have one capital letter then all lowercase
     # e.g. tEsT would become Test
+    @staticmethod
     def set_case(data):
         """
         >>> Washer.set_case('test')
@@ -56,6 +58,7 @@ class Washer(object):
         return to_wash
 
     # Rochelle
+    @staticmethod
     def keep_only_nums(data):
         keep = re.compile(r"[^0-9]")
         data = keep.sub("", data)
@@ -63,12 +66,14 @@ class Washer(object):
         return data
 
     # Rochelle
+    @staticmethod
     def strip_string(data):
         data = data.lstrip()
         data = data.rstrip()
         return data
 
     # Rochelle
+    @staticmethod
     def to_string(data, min_length):
         if 0 < len(str(data)) < min_length:
             i = ''
@@ -82,4 +87,5 @@ class Washer(object):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
