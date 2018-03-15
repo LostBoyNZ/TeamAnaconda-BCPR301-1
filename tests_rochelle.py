@@ -1,7 +1,8 @@
 import unittest
+
 import validators.validate_age as va
-import validators.validate_sales as sale
 import validators.validate_salary as sala
+import validators.validate_sales as sale
 
 
 class Tests_Rochelle(unittest.TestCase):
@@ -28,9 +29,12 @@ class Tests_Rochelle(unittest.TestCase):
 
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -43,12 +47,14 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
-
 
     def test_age_lower_string(self):
         test_name = "Age Validator Test #03"
@@ -59,9 +65,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -74,9 +83,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -89,9 +101,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -104,9 +119,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -119,9 +137,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -134,9 +155,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -149,9 +173,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -164,9 +191,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -179,9 +209,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -194,9 +227,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -209,9 +245,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -224,9 +263,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -245,9 +287,12 @@ class Tests_Rochelle(unittest.TestCase):
 
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -260,9 +305,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -275,9 +323,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -290,9 +341,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -305,9 +359,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -320,9 +377,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -335,9 +395,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -350,9 +413,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -365,9 +431,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -380,9 +449,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -395,9 +467,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -410,9 +485,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -425,9 +503,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -440,9 +521,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -461,9 +545,12 @@ class Tests_Rochelle(unittest.TestCase):
 
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -476,9 +563,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -491,9 +581,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -506,9 +599,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -521,9 +617,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -536,9 +635,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -551,9 +653,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -566,9 +671,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -581,9 +689,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -596,9 +707,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -611,9 +725,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -626,9 +743,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -641,9 +761,12 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
 
@@ -656,11 +779,15 @@ class Tests_Rochelle(unittest.TestCase):
         result = class_to_test.is_valid(data_to_test)
         # Assert
         try:
-            self.assertTrue(result[0] == expected_result[0] and result[1] == expected_result[1])
+            self.assertTrue(result[0] == expected_result[0] and result[1] ==
+                            expected_result[1])
         except AssertionError:
-            print("{} Failed - Should be {}, but was {}.".format(test_name, expected_result, result))
+            print("{} Failed - Should be {}, but was {}.".format(test_name,
+                                                                 expected_result,
+                                                                 result))
         else:
             print("{} Passed".format(test_name))
+
 
 if __name__ == '__main__':
     # unittest.main(verbosity=2)  # with more details

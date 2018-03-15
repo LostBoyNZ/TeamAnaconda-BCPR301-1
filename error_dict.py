@@ -1,9 +1,7 @@
-
 class ErrorDict:  # Claye
 
     @staticmethod
     def get_error_dict(name):
-
         error_dictionary = {  # CLI Errors -----
             101: "Command not supported",
             102: "Invalid Input, please try again",

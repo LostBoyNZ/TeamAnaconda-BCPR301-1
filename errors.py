@@ -1,5 +1,5 @@
-from error_dict import ErrorDict
 from databases.pickler import Pickler
+from error_dict import ErrorDict
 
 
 class ErrorHandler(object):  # Claye

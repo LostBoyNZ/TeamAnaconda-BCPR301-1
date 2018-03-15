@@ -1,7 +1,8 @@
 import unittest
-from validators.validate_gender import ValidateGender as va
-from validators.validate_bmi import ValidateBmi as bm
+
 from data_processor import DataProcessor as dp
+from validators.validate_bmi import ValidateBmi as bm
+from validators.validate_gender import ValidateGender as va
 
 
 class MainTests(unittest.TestCase):
@@ -63,43 +64,50 @@ class MainTests(unittest.TestCase):
 
     def test_bmi_obesity(self):
         i = bm.is_valid('obesity')
-        self.assertTrue(i == ("Obesity", True), "the value of test should be Obesity")
+        self.assertTrue(i == ("Obesity", True),
+                        "the value of test should be Obesity")
 
     def test_bmi_normal(self):
         i = bm.is_valid('normal')
-        self.assertTrue(i == ("Normal", True), "the value of test should be Normal")
+        self.assertTrue(i == ("Normal", True),
+                        "the value of test should be Normal")
 
     def test_bmi_overweight(self):
         i = bm.is_valid('over weight ')
-        self.assertTrue(i == ("Overweight", True), "the value of test should be Overweight")
+        self.assertTrue(i == ("Overweight", True),
+                        "the value of test should be Overweight")
 
     def test_bmi_underweight(self):
         i = bm.is_valid('underweight')
-        self.assertTrue(i == ("Underweight", True), "the value of test should be underweight")
+        self.assertTrue(i == ("Underweight", True),
+                        "the value of test should be underweight")
 
     def test_bmi_obese_converts_to_obesity(self):
         i = bm.is_valid('obese')
-        self.assertTrue(i == ("Obesity", True), "the value of test should be Obesity")
+        self.assertTrue(i == ("Obesity", True),
+                        "the value of test should be Obesity")
 
     # BMI WITH SPECIAL CHARACTERS
 
     def test_bmi_with_special_characters(self):
         i = bm.is_valid('4234un    derwei#$#$ght     ')
-        self.assertTrue(i == ("Underweight", True), "the value of test should be underweight")
+        self.assertTrue(i == ("Underweight", True),
+                        "the value of test should be underweight")
 
     # Data Processor Key Value (EMPID) Tests
 
-    def test_empid_valid(self):
+    def test_emp_id_valid(self):
         i = dp.validate_key('a001')
         self.assertTrue(i == 'A001', "the value of test should be A001")
 
-    def test_empid_valid_with_three_letters(self):
+    def test_emp_id_valid_with_three_letters(self):
         i = dp.validate_key('abc8')
         self.assertTrue(i == 'Abc8', "the value of test should be Abc8")
 
-    def test_empid_Invalid_with_two_characters(self):
+    def test_emp_id_Invalid_with_two_characters(self):
         i = dp.validate_key('a1')
         self.assertTrue(i == 'A1', "the value of test should be A1")
+
 
 if __name__ == '__main__':
     # unittest.main(verbosity=2)  # with more details

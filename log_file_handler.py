@@ -2,14 +2,13 @@
 import sys
 
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - errors.py not found.")
     sys.exit()
 
 
 class LogFileHandler(object):
-
     # set to read a file by default
     def open_file(self, file_name, mode='r'):
         file = ""
@@ -17,13 +16,13 @@ class LogFileHandler(object):
             file = open(file_name, mode)
         except FileNotFoundError:
             try:
-                print(err.get_error_message(403, "log"))
+                print(Err.get_error_message(403, "log"))
                 print("Creating log file...")
                 self._create_file(self, file_name)
             except OSError:
-                print(err.get_error_message(401, "log"))
+                print(Err.get_error_message(401, "log"))
             except:
-                print(err.get_error_message(402, "log"))
+                print(Err.get_error_message(402, "log"))
             else:
                 print("log.txt file created")
 
@@ -44,13 +43,13 @@ class LogFileHandler(object):
             self.close_file(file)
         except FileNotFoundError:
             try:
-                print(err.get_error_message(403, "log"))
+                print(Err.get_error_message(403, "log"))
                 print("Creating log file...")
                 self._create_file(self, file_name)
             except OSError:
-                print(err.get_error_message(401, "log"))
+                print(Err.get_error_message(401, "log"))
             except:
-                print(err.get_error_message(402, "log"))
+                print(Err.get_error_message(402, "log"))
             else:
                 print("log.txt file created")
 
@@ -72,7 +71,7 @@ class LogFileHandler(object):
             file.truncate()
             self.close_file(file)
         except PermissionError:
-            print(err.get_error_message(405, "log"))
+            print(Err.get_error_message(405, "log"))
 
         if self.file_is_empty(file_name):
             print("Log file wiped")
@@ -83,6 +82,7 @@ class LogFileHandler(object):
         file = self.open_file(self, file_name, "w+")
         self.close_file(file)
 
+    @staticmethod
     def output_file(file_contents, direction):
         if file_contents:
             if direction == "r":

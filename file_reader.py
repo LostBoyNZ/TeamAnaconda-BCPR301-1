@@ -1,17 +1,22 @@
-import errors
-from data_processor import DataProcessor
-from log_file_handler import LogFileHandler
-from openpyxl import load_workbook
-from databases.database_sqlite import CompanyDatabase
 import os.path
 import sys
 
-# from database_excel import DatabaseExcel as dbexcel
+from openpyxl import load_workbook
+
+from data_processor import DataProcessor
+from databases.database_sqlite import CompanyDatabase
+from log_file_handler import LogFileHandler
 
 try:
-    from database_excel import DatabaseExcel as dbexel
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print(errors.get_error_message(404, "database_excel"))
+    print("Fatal Error - Err.py not found.")
+    sys.exit()
+
+try:
+    from database_excel import DatabaseExcel as Dbexel
+except NameError and ModuleNotFoundError and ImportError:
+    print(Err.get_error_message(404, "database_excel"))
     sys.exit()
 
 
@@ -28,26 +33,26 @@ class FileReader(object):  # Claye
             try:
                 wb = load_workbook(file_name)
             except FileNotFoundError:
-                print(errors.get_error_message(201))
+                print(Err.get_error_message(201))
                 self.call_file(switch)
             except OSError:
-                print(errors.get_error_message(103))
+                print(Err.get_error_message(103))
                 self.call_file(switch)
 
-            i = dbexel()
+            i = Dbexel()
             data_to_save = i.create_connection(wb, switch)
             self.write_file(data_to_save)
         elif file_extension == "txt" or file_extension == "csv":
             try:
                 self.split_file(file_name, switch, separator)
             except FileNotFoundError:
-                print(errors.ErrorHandler.get_error_message(201))
+                print(Err.get_error_message(201))
                 self.call_file(switch)
             except OSError:
-                print(errors.ErrorHandler.get_error_message(103))
+                print(Err.get_error_message(103))
                 self.call_file(switch)
         else:
-            print(errors.ErrorHandler.get_error_message(204))
+            print(Err.get_error_message(204))
 
     # Claye, Works with CSV and TXT docs
     def split_file(self, file_name, switch, separator=","):
@@ -55,7 +60,7 @@ class FileReader(object):  # Claye
         try:
             file = open(file_name, "r")
         except FileNotFoundError:
-            print(errors.ErrorHandler.get_error_message(201))
+            print(Err.get_error_message(201))
         else:
             # Repeat for each line in the text file
             f = FileReader()
@@ -78,10 +83,11 @@ class FileReader(object):  # Claye
                                                        'sales': fields[3],
                                                        'bmi': fields[4],
                                                        'salary': fields[5],
-                                                       'birthday': fields[6].rstrip(),
+                                                       'birthday': fields[6]
+                                         .rstrip(),
                                                        'valid': '0'}})
                     except IndexError:
-                        print(errors.ErrorHandler.get_error_message(211))
+                        print(Err.get_error_message(211))
                         keep_going = False
             # Close the file to free up resources (good practice)
             file.close()
@@ -108,12 +114,12 @@ class FileReader(object):  # Claye
                 else:
                     self.commit_save(dict_valid, file_target)
             else:
-                print(errors.ErrorHandler.get_error_message(102))
+                print(Err.get_error_message(102))
                 self.write_file(dict_valid)
         elif u.upper() == "N":
             print("Data Not saved")
         else:
-            print(errors.ErrorHandler.get_error_message(102))
+            print(Err.get_error_message(102))
             self.write_file(dict_valid)
 
     def save_pickle_file(self, data_to_write):  # Claye, Graham
@@ -130,9 +136,9 @@ class FileReader(object):  # Claye
         try:
             file = open(file_target, "rb")
         except FileNotFoundError:
-            print(errors.ErrorHandler.get_error_message(201))
+            print(Err.get_error_message(201))
         except OSError:
-            print(errors.ErrorHandler.get_error_message(103))
+            print(Err.get_error_message(103))
 
         with open(file_target) as file:
             lines = file.readlines()
@@ -160,7 +166,7 @@ class FileReader(object):  # Claye
             z.close()
             print("File saved")
         except OSError:
-            print(errors.ErrorHandler.get_error_message(103))
+            print(Err.get_error_message(103))
             self.write_file(dict_valid)
 
     @staticmethod
@@ -173,7 +179,7 @@ class FileReader(object):  # Claye
             else:
                 return result
         except OSError:
-            print(errors.ErrorHandler.get_error_message(103))
+            print(Err.get_error_message(103))
 
     # Rochelle
     def write_to_database(self, dict_valid):  # Rochelle

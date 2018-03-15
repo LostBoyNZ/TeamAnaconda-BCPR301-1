@@ -1,39 +1,31 @@
 # Graham
 import sys
-
-from openpyxl import load_workbook
 from datetime import datetime
 
+from openpyxl import load_workbook
+
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - errors.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 try:
     from data_processor import DataProcessor as dp
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "data_processor"))
+    print(Err.get_error_message(404, "data_processor"))
     sys.exit()
 
 try:
-    from log_file_handler import LogFileHandler as lfh
+    from log_file_handler import LogFileHandler as Lfh
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "log_file_handler"))
+    print(Err.get_error_message(404, "log_file_handler"))
     sys.exit()
-
-# from file_reader import FileReader as fr
-
-# try:
-#     from file_reader import FileReader as fr
-# except NameError and ModuleNotFoundError and ImportError:
-#     print(err.get_error_message(404, "file_reader"))
-#     sys.exit()
 
 
 class DatabaseExcel(object):  # Graham
 
-    row_names = ['empid', 'gender', 'age', 'sales',
+    row_names = ['emp_id', 'gender', 'age', 'sales',
                  'bmi', 'salary', 'birthday', 'valid']
 
     def convert_date_format(self, excel_date):
@@ -60,7 +52,7 @@ class DatabaseExcel(object):  # Graham
                     sheet = wb.get_sheet_by_name(sheet_name)
                     break
                 except KeyError:
-                    print(err.get_error_message(501, sheet_name))
+                    print(Err.get_error_message(501, sheet_name))
 
         return sheet
 
@@ -72,9 +64,9 @@ class DatabaseExcel(object):  # Graham
                 wb = load_workbook(file_name)
                 break
             except FileNotFoundError:
-                print(err.get_error_message(201))
+                print(Err.get_error_message(201))
             except OSError:
-                print(err.get_error_message(103))
+                print(Err.get_error_message(103))
 
         return wb
 
@@ -109,7 +101,7 @@ class DatabaseExcel(object):  # Graham
             if key in keys:
                 dup_keys += 1
                 data_to_log = "Duplicate Key" + str(key)
-                lfh.append_file('log.txt', data_to_log)
+                Lfh.append_file('log.txt', data_to_log)
 
             # Add that key to the list of all keys
             keys.append(key)

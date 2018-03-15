@@ -1,6 +1,6 @@
 # Graham
-import sys
 import os
+import sys
 
 
 class Start:
@@ -11,20 +11,21 @@ class Start:
     Authors: Claye Barry, Rochelle Wilson, Graham Parker
 
     """
+
     def __init__(self):
 
         print("Loading...")
 
         try:
-            from errors import ErrorHandler as err
+            from errors import ErrorHandler as Err
         except NameError and ModuleNotFoundError and ImportError:
-            print("Fatal Error - errors.py not found.")
+            print("Fatal Error - Errors.py not found.")
             sys.exit()
 
         try:
-            from cmdline import CommandLine as cmd
+            from cmdline import CommandLine as Cmd
         except NameError and ModuleNotFoundError and ImportError:
-            print(err.get_error_message(404, "cmd"))
+            print(Err.get_error_message(404, "cmd"))
             sys.exit()
 
         os.system('cls')
@@ -36,6 +37,7 @@ class Start:
         except TypeError:
             pass
 
-        cmd().run_commandline(user_args)
+        Cmd().run_commandline(user_args)
+
 
 i = Start()

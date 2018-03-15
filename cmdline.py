@@ -2,71 +2,71 @@
 
 import sys
 
+_show_non_fatal_errors = True
+
 try:
-    from errors import ErrorHandler as err
+    from errors import ErrorHandler as Err
 except NameError and ModuleNotFoundError and ImportError:
-    print("Fatal Error - errors.py not found.")
+    print("Fatal Error - Errors.py not found.")
     sys.exit()
 
 try:
     from views.console_view import ConsoleView as cv
 except NameError and ModuleNotFoundError and ImportError:
-    print(err.get_error_message(404, "console_view"))
+    print(Err.get_error_message(404, "console_view"))
     sys.exit()
 
 try:
     from commands.cmd_quit import Quit
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "quit"))
+        print(Err.get_error_message(403, "quit"))
     pass
 
 try:
     from commands.cmd_help import Help
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "help"))
+        print(Err.get_error_message(403, "help"))
     pass
 
 try:
     from commands.cmd_log import Log
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "log"))
+        print(Err.get_error_message(403, "log"))
     pass
 
 try:
     from commands.cmd_read import Read
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "read"))
+        print(Err.get_error_message(403, "read"))
     pass
 
 try:
     from commands.cmd_pickler import Pickler
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "cmd_pickler"))
+        print(Err.get_error_message(403, "cmd_pickler"))
     pass
 
 try:
     from commands.cmd_process import Process
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "process"))
+        print(Err.get_error_message(403, "process"))
     pass
 
 try:
     from commands.cmd_view import View
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
-        print(err.get_error_message(403, "view"))
+        print(Err.get_error_message(403, "view"))
     pass
 
 
 class CommandLine:
-
-    _show_non_fatal_errors = True
     prompt = ""  # Rochelle
     user_name = ""
     debug_mode = False
@@ -85,7 +85,7 @@ class CommandLine:
 
     def _handle_args(self, user_args):
         if len(user_args) > 0:  # Graham
-            self.user_name = user_args[0]
+            self.user_name = user_args[0]   # Graham
         if len(user_args) > 1:
             if user_args[1].upper() == '/D':  # Claye
                 self.debug_mode = True  # Claye
@@ -120,8 +120,10 @@ class CommandLine:
                     class_name = getattr(sys.modules[__name__], class_to_call)
                     class_name(switches_and_data, self)
                 except AttributeError:
-                    cv.show_output("The command '{}' is not valid. Enter 'Help' for a list of commands"""
-                                   .format(class_to_call))
+                    cv.show_output(
+                        "The command '{}' is not valid. Enter"
+                        " 'Help' for a list of commands"""
+                        .format(class_to_call))
             else:
                 class_name = getattr(sys.modules[__name__], class_to_call)
                 class_name(switches_and_data, self)
@@ -135,7 +137,7 @@ class CommandLine:
             if user_input[0].lower() == "y":
                 result = True
         except IndexError:
-            print(err.get_error_message(102))
+            print(Err.get_error_message(102))
             self.confirm(action_name)
 
         return result
