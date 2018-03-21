@@ -6,13 +6,18 @@ try:
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - Errors.py not found.")
     sys.exit()
+except Exception as e:
+    print("Exception: {}".format(e))
+    sys.exit()
 
 try:
     import matplotlib.pyplot as plt
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "matplotlib.pyplot"))
     sys.exit()
-
+except Exception as e:
+    print(Err.get_error_message(901, e))
+    sys.exit()
 
 class ChartPie(object):  # Graham
 

@@ -208,7 +208,7 @@ class CalcData(object):
             title = "Gender of Staff"
             window_title = "Gender Pie Graph"
             data = [self.count_gender_f, self.count_gender_m]
-        elif choice == 'sakes':
+        elif choice == 'sales':
             data_labels = "< 250", "250 - 499", "500 - 749", "750 - 999"
             title = "Sales Brackets of Staff"
             window_title = "Sales Brackets of Staff"
