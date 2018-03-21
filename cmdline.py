@@ -9,61 +9,73 @@ try:
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - Errors.py not found.")
     sys.exit()
+except Exception as e:
+    print("Exception: {}".format(e))
+    sys.exit()
 
 try:
     from views.console_view import ConsoleView as cv
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "console_view"))
     sys.exit()
+except Exception as e:
+    print(Err.get_error_message(901, e))
 
 try:
     from commands.cmd_quit import Quit
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
         print(Err.get_error_message(403, "quit"))
-    pass
+except Exception as e:
+    print(Err.get_error_message(901, e))
 
 try:
     from commands.cmd_help import Help
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
         print(Err.get_error_message(403, "help"))
-    pass
+except Exception as e:
+    print(Err.get_error_message(901, e))
 
 try:
     from commands.cmd_log import Log
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
         print(Err.get_error_message(403, "log"))
-    pass
+except Exception as e:
+    print(Err.get_error_message(901, e))
+
 
 try:
     from commands.cmd_read import Read
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
         print(Err.get_error_message(403, "read"))
-    pass
+except Exception as e:
+    print(Err.get_error_message(901, e))
 
 try:
     from commands.cmd_pickler import Pickler
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
         print(Err.get_error_message(403, "cmd_pickler"))
-    pass
+except Exception as e:
+    print(Err.get_error_message(901, e))
 
 try:
     from commands.cmd_process import Process
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
         print(Err.get_error_message(403, "process"))
-    pass
-
+except Exception as e:
+    print(Err.get_error_message(901, e))
 try:
     from commands.cmd_view import View
 except NameError and ModuleNotFoundError and ImportError:
     if _show_non_fatal_errors:
         print(Err.get_error_message(403, "view"))
-    pass
+except Exception as e:
+    print(Err.get_error_message(901, e))
 
 
 class CommandLine:
@@ -89,6 +101,7 @@ class CommandLine:
         if len(user_args) > 1:
             if user_args[1].upper() == '/D':  # Claye
                 self.debug_mode = True  # Claye
+                self.prompt = "debug > "
         if len(user_args) > 2:
             self.prompt = user_args[2]  # Rochelle
 
@@ -124,6 +137,8 @@ class CommandLine:
                         "The command '{}' is not valid. Enter"
                         " 'Help' for a list of commands"""
                         .format(class_to_call))
+                except Exception as e:
+                    print(Err.get_error_message(104, e))
             else:
                 class_name = getattr(sys.modules[__name__], class_to_call)
                 class_name(switches_and_data, self)
@@ -139,5 +154,7 @@ class CommandLine:
         except IndexError:
             print(Err.get_error_message(102))
             self.confirm(action_name)
+        except Exception as e:
+            print(Err.get_error_message(104, e))
 
         return result

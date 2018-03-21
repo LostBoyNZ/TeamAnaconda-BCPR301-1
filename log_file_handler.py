@@ -6,7 +6,9 @@ try:
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - errors.py not found.")
     sys.exit()
-
+except Exception as e:
+    print("Exception: {}".format(e))
+    sys.exit()
 
 class LogFileHandler(object):
     # set to read a file by default
@@ -34,7 +36,6 @@ class LogFileHandler(object):
 
     def load_file_data(self, file_name):
         file_contents = []
-
         try:
             with self.open_file(self, file_name, "r") as file:
                 for line in file:
@@ -52,7 +53,6 @@ class LogFileHandler(object):
                 print(Err.get_error_message(402, "log"))
             else:
                 print("log.txt file created")
-
         return file_contents
 
     def file_is_empty(self, file_name):
@@ -93,7 +93,7 @@ class LogFileHandler(object):
                     print(line)
 
     def get_log(self, file_name):
-        file_contents = self.load_file_data(file_name)
+        file_contents = self.load_file_data(self, file_name)
         output = []
 
         for line in file_contents:

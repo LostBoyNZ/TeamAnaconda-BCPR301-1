@@ -22,6 +22,8 @@ except NameError and ModuleNotFoundError and ImportError:
 
 class FileReader(object):  # Claye
 
+    dict_root = {}
+
     def __init__(self):
         self.db = CompanyDatabase
 
@@ -56,7 +58,6 @@ class FileReader(object):  # Claye
 
     # Claye, Works with CSV and TXT docs
     def split_file(self, file_name, switch, separator=","):
-        dict_root = {}
         try:
             file = open(file_name, "r")
         except FileNotFoundError:
@@ -71,14 +72,14 @@ class FileReader(object):  # Claye
                 # Split file into fields using ","
                 fields = line.split(separator)
                 checked_id = DataProcessor.validate_key(fields[0])
-                if checked_id in dict_root:
+                if checked_id in f.dict_root:
                     dup_keys += 1
                     fields[6] = fields[6].rstrip()
                     data_to_log = "Duplicate Key" + str(fields[0:])
                     LogFileHandler.append_file('log.txt', data_to_log)
                 else:
                     try:
-                        dict_root.update({checked_id: {'gender': fields[1],
+                        f.dict_root.update({checked_id: {'gender': fields[1],
                                                        'age': fields[2],
                                                        'sales': fields[3],
                                                        'bmi': fields[4],
@@ -92,9 +93,27 @@ class FileReader(object):  # Claye
             # Close the file to free up resources (good practice)
             file.close()
             if keep_going:
-                valid_dict = DataProcessor.send_to_validate(dict_root,
+                valid_dict = DataProcessor.send_to_validate(f.dict_root,
                                                             switch, dup_keys)
                 self.write_file(valid_dict)
+
+    @staticmethod
+    def remove_duplicates(file_name):   # Graham
+        ids_already_in_file = []
+
+        try:
+            file = open(file_name, "r")
+        except FileNotFoundError:
+            print(Err.get_error_message(201))
+        else:
+            for line in file:
+                fields = line.split(',')
+                if fields[0] != "\n":
+                    ids_already_in_file.append(fields[0])
+
+            file.close()
+
+        return ids_already_in_file
 
     def write_file(self, dict_valid):  # Claye
         u = input("Are you sure you want to save data? Y/N >>> ")
@@ -108,7 +127,8 @@ class FileReader(object):  # Claye
                 if self.check_path_exists(file_target):
                     u2 = input("File exists, do you want to append Y/N >>> ")
                     if u2.upper() == 'Y':
-                        self.commit_save(dict_valid, file_target)
+                        ids_already_in_file = self.remove_duplicates(file_target)
+                        self.commit_save(dict_valid, file_target, ids_already_in_file)
                     if u2.upper() == 'N':
                         self.write_file(dict_valid)
                 else:
@@ -153,18 +173,35 @@ class FileReader(object):  # Claye
         file.write(data_to_write + "\n")
         file.close()
 
-    def commit_save(self, dict_valid, file_target):  # Claye
+    def commit_save(self, dict_valid, file_target, ids_already_in_file=[]):  # Claye and Graham
+        dup_keys = 0
+        rows_saved = 0
+        rows = 0
+
         try:
             z = open(file_target, "a")
             for key in dict_valid:
-                z.write("\n")
-                z.write(key + ",")
-                for value in dict_valid[key]:
-                    h = str(dict_valid[key][value] + ",")
-                    z.write(value + ' ' + h)
+                if key not in ids_already_in_file:
+                    z.write("\n")
+                    z.write(key + ",")
+                    for value in dict_valid[key]:
+                        h = str(dict_valid[key][value] + ",")
+                        z.write(value + ' ' + h)
+
+                    rows_saved += 1
+                    rows += 1
+                else:
+                    dup_keys += 1
+                    rows += 1
             z.write("\n")
             z.close()
-            print("File saved")
+            if dup_keys == 0:
+                print("File saved, {} rows added".format(rows_saved))
+            elif dup_keys == rows:
+                print("All ID's already existed in the output file. Nothing added.")
+            elif dup_keys > 0:
+                print("{} of {} rows were duplicate keys and not inserted again".format(dup_keys, rows))
+                print("{} rows were added, and the file saved".format(rows_saved))
         except OSError:
             print(Err.get_error_message(103))
             self.write_file(dict_valid)

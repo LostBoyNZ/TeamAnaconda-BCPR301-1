@@ -6,6 +6,8 @@ class ErrorDict:  # Claye
             101: "Command not supported",
             102: "Invalid Input, please try again",
             103: "Illegal file path, please try again",
+            104: "Exception in command line: {}".format(name),
+            105: "Invalid switch - Use /? to see valid options",
             # File Errors -----
             201: "File not found",
             202: "Unable to load file",
@@ -30,7 +32,9 @@ class ErrorDict:  # Claye
             501: "Error - {} key is not valid, please try again".format(name),
             # Chart Errors ----- # Graham
             601: "Data in this chart type not supported",
-            602: "Not enough data given to the chart"
+            602: "Not enough data given to the chart",
+            # General Errors ----- # Graham
+            901: "Exception during import: {}".format(name)
         }
 
         return error_dictionary

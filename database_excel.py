@@ -9,19 +9,25 @@ try:
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - Errors.py not found.")
     sys.exit()
-
+except Exception as e:
+    print("Exception: {}".format(e))
+	
 try:
     from data_processor import DataProcessor as dp
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "data_processor"))
     sys.exit()
-
+except Exception as e:
+    print(Err.get_error_message(901, e))
+	
 try:
     from log_file_handler import LogFileHandler as Lfh
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "log_file_handler"))
     sys.exit()
-
+except Exception as e:
+    print(Err.get_error_message(901, e))
+	
 
 class DatabaseExcel(object):  # Graham
 
@@ -62,12 +68,13 @@ class DatabaseExcel(object):  # Graham
 
             try:
                 wb = load_workbook(file_name)
-                break
             except FileNotFoundError:
                 print(Err.get_error_message(201))
             except OSError:
                 print(Err.get_error_message(103))
 
+
+            break
         return wb
 
     def create_connection(self, wb, switch):
@@ -116,12 +123,12 @@ class DatabaseExcel(object):  # Graham
                 target_column = target_column + 1
                 col_num = col_num + 1
 
-            data_to_process[key]['gender'] = row_dict['gender']
-            data_to_process[key]['age'] = row_dict['age']
-            data_to_process[key]['sales'] = row_dict['sales']
-            data_to_process[key]['bmi'] = row_dict['bmi']
-            data_to_process[key]['salary'] = row_dict['salary']
-            data_to_process[key]['birthday'] = row_dict['birthday']
+            rows = ['gender', 'age', 'sales', 'bmi', 'salary', 'birthday']
+
+            # Skip the ID and Valid rows
+            for row in self.row_names[1:-1]:
+                data_to_process[key][row] = row_dict[row]
+
             data_to_process[key]['valid'] = "0"
 
             data_row = []
