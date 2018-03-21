@@ -8,18 +8,25 @@ try:
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - Errors.py not found.")
     sys.exit()
+except Exception as e:
+    print("Exception: {}".format(e))
+    sys.exit()
 
 try:
     from validators.validator import Validator as Va
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "validator.py"))
     sys.exit()
+except Exception as e:
+    print(Err.get_error_message(901, e))
 
 try:
     from washers.washer import Washer as Wa
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "washer.py"))
     sys.exit()
+except Exception as e:
+    print(Err.get_error_message(901, e))
 
 
 class ValidateDate:  # Graham
