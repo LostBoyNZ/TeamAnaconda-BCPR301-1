@@ -7,11 +7,17 @@ try:
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - Errors.py not found.")
     sys.exit()
+except Exception as e:
+    print("Exception: {}".format(e))
+    sys.exit()
 
 try:
     from commands.command import Command
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "command"))
+    sys.exit()
+except Exception as e:
+    print(Err.get_error_message(901, e))
     sys.exit()
 
 try:
@@ -19,17 +25,26 @@ try:
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "log_file_handler"))
     sys.exit()
+except Exception as e:
+    print(Err.get_error_message(901, e))
+    sys.exit()
 
 try:
     from databases.pickler import Pickler as Pkl
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "pickler"))
     sys.exit()
+except Exception as e:
+    print(Err.get_error_message(901, e))
+    sys.exit()
 
 try:
     from file_reader import FileReader as fr
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "file_reader"))
+    sys.exit()
+except Exception as e:
+    print(Err.get_error_message(901, e))
     sys.exit()
 
 
@@ -84,7 +99,6 @@ class Pickler(Command):  # Graham, Claye
 
     def _pickle_log(self):
         data_to_pickle = Lfh.get_log(Lfh, "log.txt")
-        print(data_to_pickle)
         pickled_data = Pkl.pickle_data(data_to_pickle)
         self.pickled_log.append(pickled_data)
         if self.display_detail_output:
@@ -105,9 +119,9 @@ class Pickler(Command):  # Graham, Claye
 
     def _pickle_errors(self):
         pickled_data = Err.send_data_to_pickler()
-        self.pickled_Errors.append(pickled_data)
+        self.pickled_errors.append(pickled_data)
         if self.display_detail_output:
-            print("Pickled Data: {}".format(self.pickled_log))
+            print("Pickled Data: {}".format(pickled_data))
 
     def _unpickle_errors(self):
         un_pickled_data = ""

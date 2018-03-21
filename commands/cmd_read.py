@@ -7,17 +7,26 @@ try:
 except NameError and ModuleNotFoundError and ImportError:
     print("Fatal Error - Errors.py not found.")
     sys.exit()
+except Exception as e:
+    print("Exception: {}".format(e))
+    sys.exit()
 
 try:
     from commands.command import Command
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "command"))
     sys.exit()
+except Exception as e:
+    print(Err.get_error_message(901, e))
+    sys.exit()
 
 try:
     from log_file_handler import LogFileHandler as Lfh
 except NameError and ModuleNotFoundError and ImportError:
     print(Err.get_error_message(404, "log_file_handler"))
+    sys.exit()
+except Exception as e:
+    print(Err.get_error_message(901, e))
     sys.exit()
 
 
@@ -82,6 +91,8 @@ class Read(Command):
                 print(Err.get_error_message(201))
             except OSError:
                 print(Err.get_error_message(102))
+            except Exception as e:
+                print(Err.get_error_message(901, e))
 
             Lfh.output_file(file_contents, direction)
         else:

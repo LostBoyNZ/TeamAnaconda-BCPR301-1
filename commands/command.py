@@ -1,3 +1,14 @@
+import sys
+
+try:
+    from errors import ErrorHandler as Err
+except NameError and ModuleNotFoundError and ImportError:
+    print("Fatal Error - Errors.py not found.")
+    sys.exit()
+except Exception as e:
+    print("Exception: {}".format(e))
+    sys.exit()
+
 class Command:
     my_command_line = None
     user_string = ""
@@ -30,6 +41,8 @@ class Command:
                 method()
             except TypeError:
                 pass
+            except Exception as e:
+                print(Err.get_error_message(901, e))
 
     def get_switch_and_data(self, user_data, my_command):
         methods_to_run = []
@@ -41,11 +54,15 @@ class Command:
                 if data[0] == "/" and len(data) == 2:
                     switch = my_command.get_switch(data[1])
                     methods_to_run.append(switch)
+                    if switch == "":
+                        print(Err.get_error_message(105))
                 else:
                     not_a_switch = data
                     strings_to_keep.append(not_a_switch)
             except IndexError:
                 pass
+            except Exception as e:
+                print(Err.get_error_message(901, e))
 
         user_string = " ".join(strings_to_keep)
         return methods_to_run, user_string
