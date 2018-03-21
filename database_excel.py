@@ -123,8 +123,6 @@ class DatabaseExcel(object):  # Graham
                 target_column = target_column + 1
                 col_num = col_num + 1
 
-            rows = ['gender', 'age', 'sales', 'bmi', 'salary', 'birthday']
-
             # Skip the ID and Valid rows
             for row in self.row_names[1:-1]:
                 data_to_process[key][row] = row_dict[row]
